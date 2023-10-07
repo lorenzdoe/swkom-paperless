@@ -131,6 +131,7 @@ public class UpdateGroupRequest {
   }
 
 
+
   public UpdateGroupRequest addSetPermissionsItem(String setPermissionsItem) {
     if (this.setPermissions == null) {
       this.setPermissions = new ArrayList<>();

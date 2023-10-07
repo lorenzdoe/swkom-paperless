@@ -398,10 +398,12 @@ public class UpdateDocumentRequest {
     this.permissions = permissions;
   }
  */
+
   public UpdateDocumentRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
     this.setPermissions = setPermissions;
     return this;
   }
+
   public UpdateDocumentRequest notes(List<Object> notes) {
     this.notes = notes;
     return this;

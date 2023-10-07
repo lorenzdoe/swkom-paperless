@@ -313,16 +313,17 @@ public class UpdateTagRequest {
     return permissions;
   }
 
-  /*
+/*
   public void setPermissions(GetCorrespondents200ResponseResultsInnerPermissions permissions) {
     this.permissions = permissions;
   }
-   */
+*/
 
   public UpdateTagRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
     this.setPermissions = setPermissions;
     return this;
   }
+
 
   /**
    * Get setPermissions

@@ -243,16 +243,15 @@ public class UpdateDocumentTypeRequest {
   public GetCorrespondents200ResponseResultsInnerPermissions getPermissions() {
     return permissions;
   }
-
+/*
   public void setPermissions(GetCorrespondents200ResponseResultsInnerPermissions permissions) {
     this.permissions = permissions;
   }
-/*
+  */
   public UpdateDocumentTypeRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
     this.setPermissions = setPermissions;
     return this;
   }
- */
   /**
    * Get setPermissions
    * @return setPermissions

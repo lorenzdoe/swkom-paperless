@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * Home redirection to OpenAPI api documentation
  */
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Controller
 public class HomeController {
     @RequestMapping("/")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String index() {
         return "redirect:swagger-ui.html";
     }
