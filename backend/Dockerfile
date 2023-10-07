@@ -4,7 +4,7 @@
 # --- --- ---
 # run the application
 # manually build .jar file by mvn package
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:17
 COPY target/*.jar app.jar
 EXPOSE 8000
 ENTRYPOINT ["java","-jar","/app.jar"]

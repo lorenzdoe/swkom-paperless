@@ -1,7 +1,7 @@
-## STAGE 1 
+## STAGE 1
 ## building application
 
-FROM node:19-alpine as builder
+FROM node:20 as builder
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ RUN npm run build --prod
 ## STAGE 2
 ## webserver
 
-FROM nginx:alpine
+FROM nginx:latest
 
 WORKDIR /app
 
