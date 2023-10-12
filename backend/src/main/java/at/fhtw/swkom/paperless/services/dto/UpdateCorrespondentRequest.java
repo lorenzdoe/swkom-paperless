@@ -266,16 +266,16 @@ public class UpdateCorrespondentRequest {
   public GetCorrespondents200ResponseResultsInnerPermissions getPermissions() {
     return permissions;
   }
-/*
+
   public void setPermissions(GetCorrespondents200ResponseResultsInnerPermissions permissions) {
     this.permissions = permissions;
   }
- */
 
-  public UpdateCorrespondentRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
-    this.setPermissions = setPermissions;
-    return this;
-  }
+
+//  public UpdateCorrespondentRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
+//    this.setPermissions = setPermissions;
+//    return this;
+//  }
 
 
   /**

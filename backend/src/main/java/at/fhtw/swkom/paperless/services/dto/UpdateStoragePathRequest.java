@@ -267,16 +267,16 @@ public class UpdateStoragePathRequest {
   public GetStoragePaths200ResponseResultsInnerPermissions getPermissions() {
     return permissions;
   }
-/*
+
   public void setPermissions(GetStoragePaths200ResponseResultsInnerPermissions permissions) {
     this.permissions = permissions;
   }
- */
 
-  public UpdateStoragePathRequest setPermissions(GetDocument200ResponsePermissions setPermissions) {
-    this.setPermissions = setPermissions;
-    return this;
-  }
+
+//  public UpdateStoragePathRequest setPermissions(GetDocument200ResponsePermissions setPermissions) {
+//    this.setPermissions = setPermissions;
+//    return this;
+//  }
 
   /**
    * Get setPermissions

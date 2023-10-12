@@ -248,7 +248,6 @@ public interface ApiApi {
             }
         });
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
 
@@ -1504,7 +1503,6 @@ public interface ApiApi {
             }
         });
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
 
@@ -1544,7 +1542,6 @@ public interface ApiApi {
             }
         });
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
 

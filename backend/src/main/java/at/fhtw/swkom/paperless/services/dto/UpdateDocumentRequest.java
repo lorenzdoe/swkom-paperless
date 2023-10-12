@@ -393,16 +393,16 @@ public class UpdateDocumentRequest {
   public GetCorrespondents200ResponseResultsInnerPermissions getPermissions() {
     return permissions;
   }
-/*
+
   public void setPermissions(GetCorrespondents200ResponseResultsInnerPermissions permissions) {
     this.permissions = permissions;
   }
- */
 
-  public UpdateDocumentRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
-    this.setPermissions = setPermissions;
-    return this;
-  }
+
+//  public UpdateDocumentRequest setPermissions(GetCorrespondents200ResponseResultsInnerPermissions setPermissions) {
+//    this.setPermissions = setPermissions;
+//    return this;
+//  }
 
   public UpdateDocumentRequest notes(List<Object> notes) {
     this.notes = notes;
