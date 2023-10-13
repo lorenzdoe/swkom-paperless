@@ -1,6 +1,6 @@
 package at.fhtw.swkom.paperless.controller.tags;
 
-import at.fhtw.swkom.paperless.controller.login.Login;
+import at.fhtw.swkom.paperless.controller.tags.Tags;
 import jakarta.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

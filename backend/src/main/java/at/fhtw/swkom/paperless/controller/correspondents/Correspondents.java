@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-18T10:19:48.387240Z[Etc/UTC]")
 @Validated
-@Tag(name = "Tasks", description = "the Tasks API")
+@Tag(name = "Correspondents", description = "the Correspondents API")
 public interface Correspondents {
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();

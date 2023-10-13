@@ -1,6 +1,6 @@
 package at.fhtw.swkom.paperless.controller.correspondents;
 
-import at.fhtw.swkom.paperless.controller.ApiApi;
+import at.fhtw.swkom.paperless.controller.correspondents.Correspondents;
 import jakarta.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

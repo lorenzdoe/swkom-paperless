@@ -1,6 +1,6 @@
 package at.fhtw.swkom.paperless.controller.document_types;
 
-import at.fhtw.swkom.paperless.controller.correspondents.Correspondents;
+import at.fhtw.swkom.paperless.controller.document_types.DocumentTypes;
 import jakarta.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

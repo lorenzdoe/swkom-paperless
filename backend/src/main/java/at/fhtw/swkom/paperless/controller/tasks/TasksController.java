@@ -1,6 +1,6 @@
 package at.fhtw.swkom.paperless.controller.tasks;
 
-import at.fhtw.swkom.paperless.controller.tags.Tags;
+import at.fhtw.swkom.paperless.controller.tasks.Tasks;
 import jakarta.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
