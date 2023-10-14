@@ -21,7 +21,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import java.util.Optional;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-18T10:19:48.387240Z[Etc/UTC]")
 @Validated
-@Tag(name = "Document Types", description = "the Document Types API")
+@Tag(name = "DocumentTypes", description = "the Document Types API")
 public interface DocumentTypes {
 
     default Optional<NativeWebRequest> getRequest() {
