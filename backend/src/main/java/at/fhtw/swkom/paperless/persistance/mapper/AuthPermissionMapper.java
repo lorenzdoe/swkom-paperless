@@ -7,8 +7,10 @@ import at.fhtw.swkom.paperless.persistance.entities.AuthPermission;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AuthPermissionMapper {
     AuthtokenTokenMapper INSTANCE = Mappers.getMapper(AuthtokenTokenMapper.class);
     AuthPermissionDto convert(AuthPermission authPermission);
+    AuthPermission convert(AuthPermissionDto authPermissionDto);
+
 }

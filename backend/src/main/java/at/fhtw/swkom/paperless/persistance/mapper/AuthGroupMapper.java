@@ -5,8 +5,9 @@ import at.fhtw.swkom.paperless.persistance.entities.AuthGroup;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AuthGroupMapper {
     AuthGroupMapper INSTANCE = Mappers.getMapper(AuthGroupMapper.class);
     AuthGroupDto convert(AuthGroup authGroup);
+    AuthGroup convert(AuthGroupDto authGroupDto);
 }
