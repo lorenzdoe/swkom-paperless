@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface DocumentsSavedviewMapper {
-    DocumentsStoragepathMapper INSTANCE = Mappers.getMapper(DocumentsStoragepathMapper.class);
-    DocumentsStoragepathDto convert(DocumentsStoragepath documentsStoragepath);
-    DocumentsStoragepath convert(DocumentsStoragepathDto documentsStoragepathDto);
+    DocumentsSavedviewMapper INSTANCE = Mappers.getMapper(DocumentsSavedviewMapper.class);
+    DocumentsSavedviewDto convert(DocumentsSavedview documentsSavedview);
+    DocumentsSavedview convert(DocumentsSavedviewDto documentsSavedviewDto);
 }
