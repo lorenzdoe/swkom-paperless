@@ -116,9 +116,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>6.0.0.Alpha7</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.27</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
