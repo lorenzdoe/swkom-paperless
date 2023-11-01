@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.services;
+package at.fhtw.swkom.paperless.services.impl;
 
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsDocument;
@@ -21,7 +21,5 @@ public class DocumentsDocumentService {
         //documentsDocumentRepository.update?
         return document;
     }
-
-    public DocumentsDocumentService(){};
 
 }

@@ -1,4 +1,5 @@
-package at.fhtw.swkom.paperless.services;
+/*
+package at.fhtw.swkom.paperless.services.impl;
 
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsUisettingMapper;
 import at.fhtw.swkom.paperless.persistance.repositories.DocumentsUisettingRepository;
@@ -21,3 +22,4 @@ public class DocumentsUisettingService {
 
 
 }
+*/
