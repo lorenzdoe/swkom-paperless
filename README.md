@@ -1,4 +1,4 @@
-# swkom-paperless
+docker com# swkom-paperless
 
 This is the semester project for the Software Component Systems course at FH Technikum Wien, WS 2023.
 
