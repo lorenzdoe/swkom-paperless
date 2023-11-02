@@ -7,6 +7,12 @@ services:
     restart: unless-stopped
     ports:
       - 8000:8000
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
+      SPRING_DATASOURCE_USERNAME: paperless
+      SPRING_DATASOURCE_PASSWORD: pwd123456
   
   frontend:
     build: frontend/src-ui/
@@ -15,3 +21,12 @@ services:
       - backend
     ports:
       - 8001:80
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: pwd123456
+      POSTGRES_DB: swkom
+    ports:
+      - "5432:5432"

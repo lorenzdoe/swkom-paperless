@@ -4,6 +4,14 @@
 docker run --name paperlessdb -e POSTGRES_USER=paperless -e POSTGRES_PASSWORD=pwd123456 -e POSTGRES_DB=swkom -p 5432:5432 postgres 
 ```
 
+### docker compose
+
+build and start the db (as well as the entire app) with 
+
+docker compose up --build
+
+docker is now in compose
+
 ### reverse engineer database using jpabuddy
 
 https://jpa-buddy.com/documentation/reverse-engineering/
