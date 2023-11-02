@@ -4,13 +4,15 @@
 docker run --name paperlessdb -e POSTGRES_USER=paperless -e POSTGRES_PASSWORD=pwd123456 -e POSTGRES_DB=swkom -p 5432:5432 postgres 
 ```
 
-### docker compose
+or (since postgres is now in docker compose)
 
-build and start the db (as well as the entire app) with 
+if there are issues, simply comment out the content in postgres Dockerfile (db package/folder) as well as postgres things from DockerCompose file
 
+```bash
 docker compose up --build
-
-docker is now in compose
+```
+once built, we can only let the db running, for working/debugging purposes backend and frontend can be started from intellij/vscode
+important note - maven package works only with a running db
 
 ### reverse engineer database using jpabuddy
 
