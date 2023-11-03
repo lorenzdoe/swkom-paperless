@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -10,6 +11,7 @@ import java.util.UUID;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsLog}
  */
+@Builder
 public class DocumentsLogDto implements Serializable {
     private Integer id;
     private UUID group;

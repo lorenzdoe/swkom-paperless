@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsUisetting}
  */
+@Builder
 public class DocumentsUisettingDto implements Serializable {
     private Integer id;
     private Map<String, Object> settings;

@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthUser}
  */
+@Builder
 public class AuthUserDto implements Serializable {
     private Integer id;
     @NotNull

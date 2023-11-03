@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

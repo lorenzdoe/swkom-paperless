@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthUserGroup}
  */
+@Builder
 public class AuthUserGroupDto implements Serializable {
     private Integer id;
     @NotNull
