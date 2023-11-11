@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -10,6 +11,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsNote}
  */
+@Getter
 @Builder
 public class DocumentsNoteDto implements Serializable {
     private Integer id;
@@ -31,17 +33,9 @@ public class DocumentsNoteDto implements Serializable {
         this.user = user;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsNoteDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getNote() {
-        return note;
     }
 
     public DocumentsNoteDto setNote(String note) {
@@ -49,26 +43,14 @@ public class DocumentsNoteDto implements Serializable {
         return this;
     }
 
-    public OffsetDateTime getCreated() {
-        return created;
-    }
-
     public DocumentsNoteDto setCreated(OffsetDateTime created) {
         this.created = created;
         return this;
     }
 
-    public DocumentsDocumentDto getDocument() {
-        return document;
-    }
-
     public DocumentsNoteDto setDocument(DocumentsDocumentDto document) {
         this.document = document;
         return this;
-    }
-
-    public AuthUserDto getUser() {
-        return user;
     }
 
     public DocumentsNoteDto setUser(AuthUserDto user) {

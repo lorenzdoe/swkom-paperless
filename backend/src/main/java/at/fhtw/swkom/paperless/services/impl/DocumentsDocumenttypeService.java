@@ -14,13 +14,18 @@ import java.util.List;
 
 @Service
 public class DocumentsDocumenttypeService {
-    @Autowired
-    private DocumentsDocumenttypeRepository documentsDocumenttypeRepository;
+    private final DocumentsDocumenttypeRepository documentsDocumenttypeRepository;
+    private final DocumentsDocumenttypeMapper documentsDocumenttypeMapper;
+    private final AuthUserRepository authUserRepository;
 
     @Autowired
-    private DocumentsDocumenttypeMapper documentsDocumenttypeMapper;
-    @Autowired
-    private AuthUserRepository authUserRepository;
+    public DocumentsDocumenttypeService(DocumentsDocumenttypeRepository documentsDocumenttypeRepository,
+                                        DocumentsDocumenttypeMapper documentsDocumenttypeMapper,
+                                        AuthUserRepository authUserRepository) {
+        this.documentsDocumenttypeRepository = documentsDocumenttypeRepository;
+        this.documentsDocumenttypeMapper = documentsDocumenttypeMapper;
+        this.authUserRepository = authUserRepository;
+    }
 
     public AuthUser getAuthUserById(Integer id) {
         return authUserRepository.findById(Long.valueOf(id)).orElse(null);

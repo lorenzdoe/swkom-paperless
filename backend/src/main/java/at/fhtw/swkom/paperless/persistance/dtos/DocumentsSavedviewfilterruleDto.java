@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsSavedviewfilterrule}
  */
+@Getter
 @Builder
 public class DocumentsSavedviewfilterruleDto implements Serializable {
     private Integer id;
@@ -31,26 +33,14 @@ public class DocumentsSavedviewfilterruleDto implements Serializable {
         this.savedView = savedView;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsSavedviewfilterruleDto setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public Integer getRuleType() {
-        return ruleType;
-    }
-
     public DocumentsSavedviewfilterruleDto setRuleType(Integer ruleType) {
         this.ruleType = ruleType;
         return this;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     public DocumentsSavedviewfilterruleDto setValue(String value) {
@@ -79,10 +69,6 @@ public class DocumentsSavedviewfilterruleDto implements Serializable {
                 "id = " + id + ", " +
                 "ruleType = " + ruleType + ", " +
                 "value = " + value + ")";
-    }
-
-    public DocumentsSavedviewDto getSavedView() {
-        return savedView;
     }
 
     public DocumentsSavedviewfilterruleDto setSavedView(DocumentsSavedviewDto savedView) {

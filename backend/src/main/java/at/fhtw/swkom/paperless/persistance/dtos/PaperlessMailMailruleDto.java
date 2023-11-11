@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.PaperlessMailMailrule}
  */
+@Getter
 @Builder
 public class PaperlessMailMailruleDto implements Serializable {
     private Integer id;
@@ -83,17 +85,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         this.paperlessMailProcessedmails = paperlessMailProcessedmails;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public PaperlessMailMailruleDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public PaperlessMailMailruleDto setName(String name) {
@@ -101,17 +95,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public String getFolder() {
-        return folder;
-    }
-
     public PaperlessMailMailruleDto setFolder(String folder) {
         this.folder = folder;
         return this;
-    }
-
-    public String getFilterFrom() {
-        return filterFrom;
     }
 
     public PaperlessMailMailruleDto setFilterFrom(String filterFrom) {
@@ -119,17 +105,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public String getFilterSubject() {
-        return filterSubject;
-    }
-
     public PaperlessMailMailruleDto setFilterSubject(String filterSubject) {
         this.filterSubject = filterSubject;
         return this;
-    }
-
-    public String getFilterBody() {
-        return filterBody;
     }
 
     public PaperlessMailMailruleDto setFilterBody(String filterBody) {
@@ -137,17 +115,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public Integer getMaximumAge() {
-        return maximumAge;
-    }
-
     public PaperlessMailMailruleDto setMaximumAge(Integer maximumAge) {
         this.maximumAge = maximumAge;
         return this;
-    }
-
-    public Integer getAction() {
-        return action;
     }
 
     public PaperlessMailMailruleDto setAction(Integer action) {
@@ -155,17 +125,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public String getActionParameter() {
-        return actionParameter;
-    }
-
     public PaperlessMailMailruleDto setActionParameter(String actionParameter) {
         this.actionParameter = actionParameter;
         return this;
-    }
-
-    public Integer getAssignTitleFrom() {
-        return assignTitleFrom;
     }
 
     public PaperlessMailMailruleDto setAssignTitleFrom(Integer assignTitleFrom) {
@@ -173,17 +135,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public Integer getAssignCorrespondentFrom() {
-        return assignCorrespondentFrom;
-    }
-
     public PaperlessMailMailruleDto setAssignCorrespondentFrom(Integer assignCorrespondentFrom) {
         this.assignCorrespondentFrom = assignCorrespondentFrom;
         return this;
-    }
-
-    public PaperlessMailMailaccountDto getAccount() {
-        return account;
     }
 
     public PaperlessMailMailruleDto setAccount(PaperlessMailMailaccountDto account) {
@@ -191,17 +145,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public DocumentsCorrespondentDto getAssignCorrespondent() {
-        return assignCorrespondent;
-    }
-
     public PaperlessMailMailruleDto setAssignCorrespondent(DocumentsCorrespondentDto assignCorrespondent) {
         this.assignCorrespondent = assignCorrespondent;
         return this;
-    }
-
-    public DocumentsDocumenttypeDto getAssignDocumentType() {
-        return assignDocumentType;
     }
 
     public PaperlessMailMailruleDto setAssignDocumentType(DocumentsDocumenttypeDto assignDocumentType) {
@@ -209,17 +155,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public Integer getOrder() {
-        return order;
-    }
-
     public PaperlessMailMailruleDto setOrder(Integer order) {
         this.order = order;
         return this;
-    }
-
-    public Integer getAttachmentType() {
-        return attachmentType;
     }
 
     public PaperlessMailMailruleDto setAttachmentType(Integer attachmentType) {
@@ -227,17 +165,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public String getFilterAttachmentFilename() {
-        return filterAttachmentFilename;
-    }
-
     public PaperlessMailMailruleDto setFilterAttachmentFilename(String filterAttachmentFilename) {
         this.filterAttachmentFilename = filterAttachmentFilename;
         return this;
-    }
-
-    public Integer getConsumptionScope() {
-        return consumptionScope;
     }
 
     public PaperlessMailMailruleDto setConsumptionScope(Integer consumptionScope) {
@@ -245,17 +175,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public AuthUserDto getOwner() {
-        return owner;
-    }
-
     public PaperlessMailMailruleDto setOwner(AuthUserDto owner) {
         this.owner = owner;
         return this;
-    }
-
-    public String getFilterTo() {
-        return filterTo;
     }
 
     public PaperlessMailMailruleDto setFilterTo(String filterTo) {
@@ -263,17 +185,9 @@ public class PaperlessMailMailruleDto implements Serializable {
         return this;
     }
 
-    public Set<PaperlessMailMailruleAssignTagDto> getPaperlessMailMailruleAssignTags() {
-        return paperlessMailMailruleAssignTags;
-    }
-
     public PaperlessMailMailruleDto setPaperlessMailMailruleAssignTags(Set<PaperlessMailMailruleAssignTagDto> paperlessMailMailruleAssignTags) {
         this.paperlessMailMailruleAssignTags = paperlessMailMailruleAssignTags;
         return this;
-    }
-
-    public Set<PaperlessMailProcessedmailDto> getPaperlessMailProcessedmails() {
-        return paperlessMailProcessedmails;
     }
 
     public PaperlessMailMailruleDto setPaperlessMailProcessedmails(Set<PaperlessMailProcessedmailDto> paperlessMailProcessedmails) {

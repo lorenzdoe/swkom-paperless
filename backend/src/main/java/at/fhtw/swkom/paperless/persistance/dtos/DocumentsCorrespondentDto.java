@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsCorrespondent}
  */
+@Getter
 @Builder
 public class DocumentsCorrespondentDto implements Serializable {
     private Integer id;
@@ -43,17 +45,9 @@ public class DocumentsCorrespondentDto implements Serializable {
         this.paperlessMailMailrules = paperlessMailMailrules;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsCorrespondentDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public DocumentsCorrespondentDto setName(String name) {
@@ -61,17 +55,9 @@ public class DocumentsCorrespondentDto implements Serializable {
         return this;
     }
 
-    public String getMatch() {
-        return match;
-    }
-
     public DocumentsCorrespondentDto setMatch(String match) {
         this.match = match;
         return this;
-    }
-
-    public Integer getMatchingAlgorithm() {
-        return matchingAlgorithm;
     }
 
     public DocumentsCorrespondentDto setMatchingAlgorithm(Integer matchingAlgorithm) {
@@ -79,17 +65,9 @@ public class DocumentsCorrespondentDto implements Serializable {
         return this;
     }
 
-    public Boolean getIsInsensitive() {
-        return isInsensitive;
-    }
-
     public DocumentsCorrespondentDto setIsInsensitive(Boolean isInsensitive) {
         this.isInsensitive = isInsensitive;
         return this;
-    }
-
-    public AuthUserDto getOwner() {
-        return owner;
     }
 
     public DocumentsCorrespondentDto setOwner(AuthUserDto owner) {
@@ -97,17 +75,9 @@ public class DocumentsCorrespondentDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsDocumentDto> getDocumentsDocuments() {
-        return documentsDocuments;
-    }
-
     public DocumentsCorrespondentDto setDocumentsDocuments(Set<DocumentsDocumentDto> documentsDocuments) {
         this.documentsDocuments = documentsDocuments;
         return this;
-    }
-
-    public Set<PaperlessMailMailruleDto> getPaperlessMailMailrules() {
-        return paperlessMailMailrules;
     }
 
     public DocumentsCorrespondentDto setPaperlessMailMailrules(Set<PaperlessMailMailruleDto> paperlessMailMailrules) {

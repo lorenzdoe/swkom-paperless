@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -11,6 +12,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsPaperlesstask}
  */
+@Getter
 @Builder
 public class DocumentsPaperlesstaskDto implements Serializable {
     private Integer id;
@@ -47,17 +49,9 @@ public class DocumentsPaperlesstaskDto implements Serializable {
         this.taskName = taskName;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsPaperlesstaskDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getTaskId() {
-        return taskId;
     }
 
     public DocumentsPaperlesstaskDto setTaskId(String taskId) {
@@ -65,17 +59,9 @@ public class DocumentsPaperlesstaskDto implements Serializable {
         return this;
     }
 
-    public Boolean getAcknowledged() {
-        return acknowledged;
-    }
-
     public DocumentsPaperlesstaskDto setAcknowledged(Boolean acknowledged) {
         this.acknowledged = acknowledged;
         return this;
-    }
-
-    public OffsetDateTime getDateCreated() {
-        return dateCreated;
     }
 
     public DocumentsPaperlesstaskDto setDateCreated(OffsetDateTime dateCreated) {
@@ -83,17 +69,9 @@ public class DocumentsPaperlesstaskDto implements Serializable {
         return this;
     }
 
-    public OffsetDateTime getDateDone() {
-        return dateDone;
-    }
-
     public DocumentsPaperlesstaskDto setDateDone(OffsetDateTime dateDone) {
         this.dateDone = dateDone;
         return this;
-    }
-
-    public OffsetDateTime getDateStarted() {
-        return dateStarted;
     }
 
     public DocumentsPaperlesstaskDto setDateStarted(OffsetDateTime dateStarted) {
@@ -101,17 +79,9 @@ public class DocumentsPaperlesstaskDto implements Serializable {
         return this;
     }
 
-    public String getResult() {
-        return result;
-    }
-
     public DocumentsPaperlesstaskDto setResult(String result) {
         this.result = result;
         return this;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public DocumentsPaperlesstaskDto setStatus(String status) {
@@ -119,17 +89,9 @@ public class DocumentsPaperlesstaskDto implements Serializable {
         return this;
     }
 
-    public String getTaskFileName() {
-        return taskFileName;
-    }
-
     public DocumentsPaperlesstaskDto setTaskFileName(String taskFileName) {
         this.taskFileName = taskFileName;
         return this;
-    }
-
-    public String getTaskName() {
-        return taskName;
     }
 
     public DocumentsPaperlesstaskDto setTaskName(String taskName) {

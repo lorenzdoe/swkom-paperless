@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthGroup}
  */
+@Getter
 @Builder
 public class AuthGroupDto implements Serializable {
     private Integer id;
@@ -31,17 +33,9 @@ public class AuthGroupDto implements Serializable {
         this.authUserGroups = authUserGroups;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public AuthGroupDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public AuthGroupDto setName(String name) {
@@ -49,17 +43,9 @@ public class AuthGroupDto implements Serializable {
         return this;
     }
 
-    public Set<AuthGroupPermissionDto> getAuthGroupPermissions() {
-        return authGroupPermissions;
-    }
-
     public AuthGroupDto setAuthGroupPermissions(Set<AuthGroupPermissionDto> authGroupPermissions) {
         this.authGroupPermissions = authGroupPermissions;
         return this;
-    }
-
-    public Set<AuthUserGroupDto> getAuthUserGroups() {
-        return authUserGroups;
     }
 
     public AuthGroupDto setAuthUserGroups(Set<AuthUserGroupDto> authUserGroups) {

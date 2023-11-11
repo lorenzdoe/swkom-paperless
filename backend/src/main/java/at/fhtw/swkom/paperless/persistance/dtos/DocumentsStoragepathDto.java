@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsStoragepath}
  */
+@Getter
 @Builder
 public class DocumentsStoragepathDto implements Serializable {
     private Integer id;
@@ -45,17 +47,9 @@ public class DocumentsStoragepathDto implements Serializable {
         this.documentsDocuments = documentsDocuments;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsStoragepathDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public DocumentsStoragepathDto setName(String name) {
@@ -63,17 +57,9 @@ public class DocumentsStoragepathDto implements Serializable {
         return this;
     }
 
-    public String getMatch() {
-        return match;
-    }
-
     public DocumentsStoragepathDto setMatch(String match) {
         this.match = match;
         return this;
-    }
-
-    public Integer getMatchingAlgorithm() {
-        return matchingAlgorithm;
     }
 
     public DocumentsStoragepathDto setMatchingAlgorithm(Integer matchingAlgorithm) {
@@ -81,17 +67,9 @@ public class DocumentsStoragepathDto implements Serializable {
         return this;
     }
 
-    public Boolean getIsInsensitive() {
-        return isInsensitive;
-    }
-
     public DocumentsStoragepathDto setIsInsensitive(Boolean isInsensitive) {
         this.isInsensitive = isInsensitive;
         return this;
-    }
-
-    public String getPath() {
-        return path;
     }
 
     public DocumentsStoragepathDto setPath(String path) {
@@ -99,17 +77,9 @@ public class DocumentsStoragepathDto implements Serializable {
         return this;
     }
 
-    public AuthUserDto getOwner() {
-        return owner;
-    }
-
     public DocumentsStoragepathDto setOwner(AuthUserDto owner) {
         this.owner = owner;
         return this;
-    }
-
-    public Set<DocumentsDocumentDto> getDocumentsDocuments() {
-        return documentsDocuments;
     }
 
     public DocumentsStoragepathDto setDocumentsDocuments(Set<DocumentsDocumentDto> documentsDocuments) {

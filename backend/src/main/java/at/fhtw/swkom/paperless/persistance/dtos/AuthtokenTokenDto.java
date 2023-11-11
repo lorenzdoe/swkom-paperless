@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -11,6 +12,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthtokenToken}
  */
+@Getter
 @Builder
 public class AuthtokenTokenDto implements Serializable {
     @Size(max = 40)
@@ -29,26 +31,14 @@ public class AuthtokenTokenDto implements Serializable {
         this.user = user;
     }
 
-    public String getKey() {
-        return key;
-    }
-
     public AuthtokenTokenDto setKey(String key) {
         this.key = key;
         return this;
     }
 
-    public OffsetDateTime getCreated() {
-        return created;
-    }
-
     public AuthtokenTokenDto setCreated(OffsetDateTime created) {
         this.created = created;
         return this;
-    }
-
-    public AuthUserDto getUser() {
-        return user;
     }
 
     public AuthtokenTokenDto setUser(AuthUserDto user) {

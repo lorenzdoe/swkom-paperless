@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.PaperlessMailMailaccount}
  */
+@Getter
 @Builder
 public class PaperlessMailMailaccountDto implements Serializable {
     private Integer id;
@@ -55,17 +57,9 @@ public class PaperlessMailMailaccountDto implements Serializable {
         this.paperlessMailMailrules = paperlessMailMailrules;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public PaperlessMailMailaccountDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public PaperlessMailMailaccountDto setName(String name) {
@@ -73,17 +67,9 @@ public class PaperlessMailMailaccountDto implements Serializable {
         return this;
     }
 
-    public String getImapServer() {
-        return imapServer;
-    }
-
     public PaperlessMailMailaccountDto setImapServer(String imapServer) {
         this.imapServer = imapServer;
         return this;
-    }
-
-    public Integer getImapPort() {
-        return imapPort;
     }
 
     public PaperlessMailMailaccountDto setImapPort(Integer imapPort) {
@@ -91,17 +77,9 @@ public class PaperlessMailMailaccountDto implements Serializable {
         return this;
     }
 
-    public Integer getImapSecurity() {
-        return imapSecurity;
-    }
-
     public PaperlessMailMailaccountDto setImapSecurity(Integer imapSecurity) {
         this.imapSecurity = imapSecurity;
         return this;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public PaperlessMailMailaccountDto setUsername(String username) {
@@ -109,17 +87,9 @@ public class PaperlessMailMailaccountDto implements Serializable {
         return this;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public PaperlessMailMailaccountDto setPassword(String password) {
         this.password = password;
         return this;
-    }
-
-    public String getCharacterSet() {
-        return characterSet;
     }
 
     public PaperlessMailMailaccountDto setCharacterSet(String characterSet) {
@@ -127,26 +97,14 @@ public class PaperlessMailMailaccountDto implements Serializable {
         return this;
     }
 
-    public AuthUserDto getOwner() {
-        return owner;
-    }
-
     public PaperlessMailMailaccountDto setOwner(AuthUserDto owner) {
         this.owner = owner;
         return this;
     }
 
-    public Boolean getIsToken() {
-        return isToken;
-    }
-
     public PaperlessMailMailaccountDto setIsToken(Boolean isToken) {
         this.isToken = isToken;
         return this;
-    }
-
-    public Set<PaperlessMailMailruleDto> getPaperlessMailMailrules() {
-        return paperlessMailMailrules;
     }
 
     public PaperlessMailMailaccountDto setPaperlessMailMailrules(Set<PaperlessMailMailruleDto> paperlessMailMailrules) {

@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthGroupPermission}
  */
+@Getter
 @Builder
 public class AuthGroupPermissionDto implements Serializable {
     private Integer id;
@@ -26,26 +28,14 @@ public class AuthGroupPermissionDto implements Serializable {
         this.permission = permission;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public AuthGroupPermissionDto setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public AuthGroupDto getGroup() {
-        return group;
-    }
-
     public AuthGroupPermissionDto setGroup(AuthGroupDto group) {
         this.group = group;
         return this;
-    }
-
-    public AuthPermissionDto getPermission() {
-        return permission;
     }
 
     public AuthGroupPermissionDto setPermission(AuthPermissionDto permission) {

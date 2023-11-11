@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsDocumentTag}
  */
+@Getter
 @Builder
 public class DocumentsDocumentTagDto implements Serializable {
     private Integer id;
@@ -26,10 +28,6 @@ public class DocumentsDocumentTagDto implements Serializable {
         this.id = id;
         this.document = document;
         this.tag = tag;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public DocumentsDocumentTagDto setId(Integer id) {
@@ -56,17 +54,9 @@ public class DocumentsDocumentTagDto implements Serializable {
                 "id = " + id + ")";
     }
 
-    public DocumentsDocumentDto getDocument() {
-        return document;
-    }
-
     public DocumentsDocumentTagDto setDocument(DocumentsDocumentDto document) {
         this.document = document;
         return this;
-    }
-
-    public DocumentsTagDto getTag() {
-        return tag;
     }
 
     public DocumentsDocumentTagDto setTag(DocumentsTagDto tag) {

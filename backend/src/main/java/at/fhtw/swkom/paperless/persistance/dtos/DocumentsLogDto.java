@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -11,6 +12,7 @@ import java.util.UUID;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsLog}
  */
+@Getter
 @Builder
 public class DocumentsLogDto implements Serializable {
     private Integer id;
@@ -33,17 +35,9 @@ public class DocumentsLogDto implements Serializable {
         this.created = created;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsLogDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public UUID getGroup() {
-        return group;
     }
 
     public DocumentsLogDto setGroup(UUID group) {
@@ -51,26 +45,14 @@ public class DocumentsLogDto implements Serializable {
         return this;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public DocumentsLogDto setMessage(String message) {
         this.message = message;
         return this;
     }
 
-    public Integer getLevel() {
-        return level;
-    }
-
     public DocumentsLogDto setLevel(Integer level) {
         this.level = level;
         return this;
-    }
-
-    public OffsetDateTime getCreated() {
-        return created;
     }
 
     public DocumentsLogDto setCreated(OffsetDateTime created) {

@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthPermission}
  */
+@Getter
 @Builder
 public class AuthPermissionDto implements Serializable {
     private Integer id;
@@ -39,17 +41,9 @@ public class AuthPermissionDto implements Serializable {
         this.authUserUserPermissions = authUserUserPermissions;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public AuthPermissionDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public AuthPermissionDto setName(String name) {
@@ -57,17 +51,9 @@ public class AuthPermissionDto implements Serializable {
         return this;
     }
 
-    public String getContentType() {
-        return contentType;
-    }
-
     public AuthPermissionDto setContentType(String contentType) {
         this.contentType = contentType;
         return this;
-    }
-
-    public String getCodename() {
-        return codename;
     }
 
     public AuthPermissionDto setCodename(String codename) {
@@ -75,17 +61,9 @@ public class AuthPermissionDto implements Serializable {
         return this;
     }
 
-    public Set<AuthGroupPermissionDto> getAuthGroupPermissions() {
-        return authGroupPermissions;
-    }
-
     public AuthPermissionDto setAuthGroupPermissions(Set<AuthGroupPermissionDto> authGroupPermissions) {
         this.authGroupPermissions = authGroupPermissions;
         return this;
-    }
-
-    public Set<AuthUserUserPermissionDto> getAuthUserUserPermissions() {
-        return authUserUserPermissions;
     }
 
     public AuthPermissionDto setAuthUserUserPermissions(Set<AuthUserUserPermissionDto> authUserUserPermissions) {

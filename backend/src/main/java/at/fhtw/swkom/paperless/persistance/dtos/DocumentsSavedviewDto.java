@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsSavedview}
  */
+@Getter
 @Builder
 public class DocumentsSavedviewDto implements Serializable {
     private Integer id;
@@ -43,17 +45,9 @@ public class DocumentsSavedviewDto implements Serializable {
         this.documentsSavedviewfilterrules = documentsSavedviewfilterrules;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsSavedviewDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public DocumentsSavedviewDto setName(String name) {
@@ -61,17 +55,9 @@ public class DocumentsSavedviewDto implements Serializable {
         return this;
     }
 
-    public Boolean getShowOnDashboard() {
-        return showOnDashboard;
-    }
-
     public DocumentsSavedviewDto setShowOnDashboard(Boolean showOnDashboard) {
         this.showOnDashboard = showOnDashboard;
         return this;
-    }
-
-    public Boolean getShowInSidebar() {
-        return showInSidebar;
     }
 
     public DocumentsSavedviewDto setShowInSidebar(Boolean showInSidebar) {
@@ -79,17 +65,9 @@ public class DocumentsSavedviewDto implements Serializable {
         return this;
     }
 
-    public String getSortField() {
-        return sortField;
-    }
-
     public DocumentsSavedviewDto setSortField(String sortField) {
         this.sortField = sortField;
         return this;
-    }
-
-    public Boolean getSortReverse() {
-        return sortReverse;
     }
 
     public DocumentsSavedviewDto setSortReverse(Boolean sortReverse) {
@@ -97,17 +75,9 @@ public class DocumentsSavedviewDto implements Serializable {
         return this;
     }
 
-    public AuthUserDto getOwner() {
-        return owner;
-    }
-
     public DocumentsSavedviewDto setOwner(AuthUserDto owner) {
         this.owner = owner;
         return this;
-    }
-
-    public Set<DocumentsSavedviewfilterruleDto> getDocumentsSavedviewfilterrules() {
-        return documentsSavedviewfilterrules;
     }
 
     public DocumentsSavedviewDto setDocumentsSavedviewfilterrules(Set<DocumentsSavedviewfilterruleDto> documentsSavedviewfilterrules) {

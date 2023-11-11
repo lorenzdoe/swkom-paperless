@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.PaperlessMailMailruleAssignTag}
  */
+@Getter
 @Builder
 public class PaperlessMailMailruleAssignTagDto implements Serializable {
     private Integer id;
@@ -26,26 +28,14 @@ public class PaperlessMailMailruleAssignTagDto implements Serializable {
         this.tag = tag;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public PaperlessMailMailruleAssignTagDto setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public PaperlessMailMailruleDto getMailrule() {
-        return mailrule;
-    }
-
     public PaperlessMailMailruleAssignTagDto setMailrule(PaperlessMailMailruleDto mailrule) {
         this.mailrule = mailrule;
         return this;
-    }
-
-    public DocumentsTagDto getTag() {
-        return tag;
     }
 
     public PaperlessMailMailruleAssignTagDto setTag(DocumentsTagDto tag) {

@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -11,6 +12,7 @@ import java.util.Objects;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.PaperlessMailProcessedmail}
  */
+@Getter
 @Builder
 public class PaperlessMailProcessedmailDto implements Serializable {
     private Integer id;
@@ -51,17 +53,9 @@ public class PaperlessMailProcessedmailDto implements Serializable {
         this.rule = rule;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public PaperlessMailProcessedmailDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getFolder() {
-        return folder;
     }
 
     public PaperlessMailProcessedmailDto setFolder(String folder) {
@@ -69,17 +63,9 @@ public class PaperlessMailProcessedmailDto implements Serializable {
         return this;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
     public PaperlessMailProcessedmailDto setUid(String uid) {
         this.uid = uid;
         return this;
-    }
-
-    public String getSubject() {
-        return subject;
     }
 
     public PaperlessMailProcessedmailDto setSubject(String subject) {
@@ -87,17 +73,9 @@ public class PaperlessMailProcessedmailDto implements Serializable {
         return this;
     }
 
-    public OffsetDateTime getReceived() {
-        return received;
-    }
-
     public PaperlessMailProcessedmailDto setReceived(OffsetDateTime received) {
         this.received = received;
         return this;
-    }
-
-    public OffsetDateTime getProcessed() {
-        return processed;
     }
 
     public PaperlessMailProcessedmailDto setProcessed(OffsetDateTime processed) {
@@ -105,17 +83,9 @@ public class PaperlessMailProcessedmailDto implements Serializable {
         return this;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public PaperlessMailProcessedmailDto setStatus(String status) {
         this.status = status;
         return this;
-    }
-
-    public String getError() {
-        return error;
     }
 
     public PaperlessMailProcessedmailDto setError(String error) {
@@ -123,17 +93,9 @@ public class PaperlessMailProcessedmailDto implements Serializable {
         return this;
     }
 
-    public AuthUserDto getOwner() {
-        return owner;
-    }
-
     public PaperlessMailProcessedmailDto setOwner(AuthUserDto owner) {
         this.owner = owner;
         return this;
-    }
-
-    public PaperlessMailMailruleDto getRule() {
-        return rule;
     }
 
     public PaperlessMailProcessedmailDto setRule(PaperlessMailMailruleDto rule) {

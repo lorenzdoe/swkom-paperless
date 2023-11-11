@@ -55,6 +55,8 @@ export class UploadDocumentsService {
           } else if (event.type == HttpEventType.Response) {
             status.taskId = event.body['task_id']
             status.message = $localize`Upload complete, waiting...`
+            //status.updateProgress(FileStatusPhase.SUCCESS)          // added, works, but not sure if appropriate
+            //status.message = $localize`success`                     // added, works, but not sure if appropriate
             this.uploadSubscriptions[file.name]?.complete()
           }
         },

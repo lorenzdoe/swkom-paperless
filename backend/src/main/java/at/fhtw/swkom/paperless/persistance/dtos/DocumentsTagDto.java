@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.DocumentsTag}
  */
+@Getter
 @Builder
 public class DocumentsTagDto implements Serializable {
     private Integer id;
@@ -50,17 +52,9 @@ public class DocumentsTagDto implements Serializable {
         this.paperlessMailMailruleAssignTags = paperlessMailMailruleAssignTags;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public DocumentsTagDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public DocumentsTagDto setName(String name) {
@@ -68,17 +62,9 @@ public class DocumentsTagDto implements Serializable {
         return this;
     }
 
-    public String getMatch() {
-        return match;
-    }
-
     public DocumentsTagDto setMatch(String match) {
         this.match = match;
         return this;
-    }
-
-    public Integer getMatchingAlgorithm() {
-        return matchingAlgorithm;
     }
 
     public DocumentsTagDto setMatchingAlgorithm(Integer matchingAlgorithm) {
@@ -86,17 +72,9 @@ public class DocumentsTagDto implements Serializable {
         return this;
     }
 
-    public Boolean getIsInsensitive() {
-        return isInsensitive;
-    }
-
     public DocumentsTagDto setIsInsensitive(Boolean isInsensitive) {
         this.isInsensitive = isInsensitive;
         return this;
-    }
-
-    public Boolean getIsInboxTag() {
-        return isInboxTag;
     }
 
     public DocumentsTagDto setIsInboxTag(Boolean isInboxTag) {
@@ -104,17 +82,9 @@ public class DocumentsTagDto implements Serializable {
         return this;
     }
 
-    public String getColor() {
-        return color;
-    }
-
     public DocumentsTagDto setColor(String color) {
         this.color = color;
         return this;
-    }
-
-    public AuthUserDto getOwner() {
-        return owner;
     }
 
     public DocumentsTagDto setOwner(AuthUserDto owner) {
@@ -122,17 +92,9 @@ public class DocumentsTagDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsDocumentTagDto> getDocumentsDocumentTags() {
-        return documentsDocumentTags;
-    }
-
     public DocumentsTagDto setDocumentsDocumentTags(Set<DocumentsDocumentTagDto> documentsDocumentTags) {
         this.documentsDocumentTags = documentsDocumentTags;
         return this;
-    }
-
-    public Set<PaperlessMailMailruleAssignTagDto> getPaperlessMailMailruleAssignTags() {
-        return paperlessMailMailruleAssignTags;
     }
 
     public DocumentsTagDto setPaperlessMailMailruleAssignTags(Set<PaperlessMailMailruleAssignTagDto> paperlessMailMailruleAssignTags) {

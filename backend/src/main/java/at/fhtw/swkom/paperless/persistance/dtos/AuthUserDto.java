@@ -3,6 +3,7 @@ package at.fhtw.swkom.paperless.persistance.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -13,6 +14,7 @@ import java.util.Set;
 /**
  * DTO for {@link at.fhtw.swkom.paperless.persistance.entities.AuthUser}
  */
+@Getter
 @Builder
 public class AuthUserDto implements Serializable {
     private Integer id;
@@ -86,17 +88,9 @@ public class AuthUserDto implements Serializable {
         this.paperlessMailProcessedmails = paperlessMailProcessedmails;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public AuthUserDto setId(Integer id) {
         this.id = id;
         return this;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public AuthUserDto setPassword(String password) {
@@ -104,17 +98,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public OffsetDateTime getLastLogin() {
-        return lastLogin;
-    }
-
     public AuthUserDto setLastLogin(OffsetDateTime lastLogin) {
         this.lastLogin = lastLogin;
         return this;
-    }
-
-    public Boolean getIsSuperuser() {
-        return isSuperuser;
     }
 
     public AuthUserDto setIsSuperuser(Boolean isSuperuser) {
@@ -122,17 +108,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public AuthUserDto setUsername(String username) {
         this.username = username;
         return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
     }
 
     public AuthUserDto setFirstName(String firstName) {
@@ -140,17 +118,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
     public AuthUserDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public AuthUserDto setEmail(String email) {
@@ -158,17 +128,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Boolean getIsStaff() {
-        return isStaff;
-    }
-
     public AuthUserDto setIsStaff(Boolean isStaff) {
         this.isStaff = isStaff;
         return this;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
     }
 
     public AuthUserDto setIsActive(Boolean isActive) {
@@ -176,17 +138,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public OffsetDateTime getDateJoined() {
-        return dateJoined;
-    }
-
     public AuthUserDto setDateJoined(OffsetDateTime dateJoined) {
         this.dateJoined = dateJoined;
         return this;
-    }
-
-    public Set<AuthUserGroupDto> getAuthUserGroups() {
-        return authUserGroups;
     }
 
     public AuthUserDto setAuthUserGroups(Set<AuthUserGroupDto> authUserGroups) {
@@ -194,17 +148,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<AuthUserUserPermissionDto> getAuthUserUserPermissions() {
-        return authUserUserPermissions;
-    }
-
     public AuthUserDto setAuthUserUserPermissions(Set<AuthUserUserPermissionDto> authUserUserPermissions) {
         this.authUserUserPermissions = authUserUserPermissions;
         return this;
-    }
-
-    public AuthtokenTokenDto getAuthtokenToken() {
-        return authtokenToken;
     }
 
     public AuthUserDto setAuthtokenToken(AuthtokenTokenDto authtokenToken) {
@@ -212,17 +158,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsCorrespondentDto> getDocumentsCorrespondents() {
-        return documentsCorrespondents;
-    }
-
     public AuthUserDto setDocumentsCorrespondents(Set<DocumentsCorrespondentDto> documentsCorrespondents) {
         this.documentsCorrespondents = documentsCorrespondents;
         return this;
-    }
-
-    public Set<DocumentsDocumentDto> getDocumentsDocuments() {
-        return documentsDocuments;
     }
 
     public AuthUserDto setDocumentsDocuments(Set<DocumentsDocumentDto> documentsDocuments) {
@@ -230,17 +168,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsDocumenttypeDto> getDocumentsDocumenttypes() {
-        return documentsDocumenttypes;
-    }
-
     public AuthUserDto setDocumentsDocumenttypes(Set<DocumentsDocumenttypeDto> documentsDocumenttypes) {
         this.documentsDocumenttypes = documentsDocumenttypes;
         return this;
-    }
-
-    public Set<DocumentsNoteDto> getDocumentsNotes() {
-        return documentsNotes;
     }
 
     public AuthUserDto setDocumentsNotes(Set<DocumentsNoteDto> documentsNotes) {
@@ -248,17 +178,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsSavedviewDto> getDocumentsSavedviews() {
-        return documentsSavedviews;
-    }
-
     public AuthUserDto setDocumentsSavedviews(Set<DocumentsSavedviewDto> documentsSavedviews) {
         this.documentsSavedviews = documentsSavedviews;
         return this;
-    }
-
-    public Set<DocumentsStoragepathDto> getDocumentsStoragepaths() {
-        return documentsStoragepaths;
     }
 
     public AuthUserDto setDocumentsStoragepaths(Set<DocumentsStoragepathDto> documentsStoragepaths) {
@@ -266,17 +188,9 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<DocumentsTagDto> getDocumentsTags() {
-        return documentsTags;
-    }
-
     public AuthUserDto setDocumentsTags(Set<DocumentsTagDto> documentsTags) {
         this.documentsTags = documentsTags;
         return this;
-    }
-
-    public DocumentsUisettingDto getDocumentsUisetting() {
-        return documentsUisetting;
     }
 
     public AuthUserDto setDocumentsUisetting(DocumentsUisettingDto documentsUisetting) {
@@ -284,26 +198,14 @@ public class AuthUserDto implements Serializable {
         return this;
     }
 
-    public Set<PaperlessMailMailaccountDto> getPaperlessMailMailaccounts() {
-        return paperlessMailMailaccounts;
-    }
-
     public AuthUserDto setPaperlessMailMailaccounts(Set<PaperlessMailMailaccountDto> paperlessMailMailaccounts) {
         this.paperlessMailMailaccounts = paperlessMailMailaccounts;
         return this;
     }
 
-    public Set<PaperlessMailMailruleDto> getPaperlessMailMailrules() {
-        return paperlessMailMailrules;
-    }
-
     public AuthUserDto setPaperlessMailMailrules(Set<PaperlessMailMailruleDto> paperlessMailMailrules) {
         this.paperlessMailMailrules = paperlessMailMailrules;
         return this;
-    }
-
-    public Set<PaperlessMailProcessedmailDto> getPaperlessMailProcessedmails() {
-        return paperlessMailProcessedmails;
     }
 
     public AuthUserDto setPaperlessMailProcessedmails(Set<PaperlessMailProcessedmailDto> paperlessMailProcessedmails) {

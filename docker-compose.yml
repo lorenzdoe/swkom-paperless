@@ -9,10 +9,12 @@ services:
       - 8000:8000
     depends_on:
       - postgres
+      - filestore
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
       SPRING_DATASOURCE_USERNAME: paperless
       SPRING_DATASOURCE_PASSWORD: pwd123456
+      MINIO_URL: http://filestore:9000
   
   frontend:
     build: frontend/src-ui/
@@ -30,3 +32,18 @@ services:
       POSTGRES_DB: swkom
     ports:
       - "5432:5432"
+
+  filestore:
+    image: quay.io/minio/minio
+    volumes: 
+      - miniostorage:/data
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: PAPERLESS
+      MINIO_ROOT_PASSWORD: PASSWORD
+    ports:
+      - 9090:9090           # this lets us access the minio ui on localhost:9090
+    command: server /data --console-address ":9090"
+
+volumes:
+  miniostorage:
