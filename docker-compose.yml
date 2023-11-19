@@ -57,3 +57,4 @@ services:
 
 volumes:
   miniostorage:
+  # TODO: add volumes for postgres, rabbitmq
