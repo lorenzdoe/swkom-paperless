@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.services;
+package at.fhtw.swkom.paperless.services.comm;
 
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;

@@ -4,7 +4,7 @@ import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsDocument;
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsDocumentMapper;
 import at.fhtw.swkom.paperless.persistance.repositories.DocumentsDocumentRepository;
-import at.fhtw.swkom.paperless.services.MinIOService;
+import at.fhtw.swkom.paperless.services.comm.MinIOService;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

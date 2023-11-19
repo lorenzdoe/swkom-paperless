@@ -10,11 +10,13 @@ services:
     depends_on:
       - postgres
       - filestore
+      - rabbitmq
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
       SPRING_DATASOURCE_USERNAME: paperless
       SPRING_DATASOURCE_PASSWORD: pwd123456
       MINIO_URL: http://filestore:9000
+      SPRING_RABBITMQ_HOST: rabbitmq
   
   frontend:
     build: frontend/src-ui/
@@ -44,6 +46,14 @@ services:
     ports:
       - 9090:9090           # this lets us access the minio ui on localhost:9090
     command: server /data --console-address ":9090"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: PAPERLESS
+      RABBITMQ_DEFAULT_PASS: PASSWORD
 
 volumes:
   miniostorage:

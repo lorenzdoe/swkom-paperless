@@ -1,6 +1,6 @@
-package at.fhtw.swkom.paperless.config;
+package at.fhtw.swkom.paperless.config.comm;
 
-import at.fhtw.swkom.paperless.services.MinIOService;
+import at.fhtw.swkom.paperless.services.comm.MinIOService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

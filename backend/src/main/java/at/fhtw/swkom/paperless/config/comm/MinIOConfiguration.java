@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.config;
+package at.fhtw.swkom.paperless.config.comm;
 
 import io.minio.MinioClient;
 import lombok.extern.slf4j.Slf4j;
