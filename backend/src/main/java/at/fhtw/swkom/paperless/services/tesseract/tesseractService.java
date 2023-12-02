@@ -6,12 +6,11 @@ import net.sourceforge.tess4j.TesseractException;
 
 public class tesseractService {
 
+//    Tesseract tesseract = new Tesseract();
+//    tesseract.setDatapath("/backend/services/tesseract");
+//        tesseract.setLanguage("eng");
+//        tesseract.setDatapath("./");
+//             test
 
-        Tesseract tesseract = new Tesseract();
-        //tesseract.setDatapath("/backend/services/tesseract");
-        //tesseract.setLanguage("eng");
-        //tesseract.setDatapath("./");
-            // test
-
-    }
+}
 

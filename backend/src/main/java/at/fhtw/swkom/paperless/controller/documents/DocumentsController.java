@@ -36,7 +36,6 @@ public class DocumentsController implements Documents {
     private DocumentsDocumentService documentsDocumentService;
     @Autowired
     private MessageService messageService;
-
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.ofNullable(request);

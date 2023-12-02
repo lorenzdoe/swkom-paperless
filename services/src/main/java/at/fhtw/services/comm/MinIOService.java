@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.services.comm;
+package at.fhtw.services.comm;
 
 import io.minio.*;
 import io.minio.errors.ErrorResponseException;
@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Slf4j
 @Getter
