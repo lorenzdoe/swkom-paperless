@@ -57,7 +57,7 @@ public class DocumentsController implements Documents {
             DocumentsDocumentDto documentsDocumentDto = documentsDocumentService.uploadFile(document);
 
             // send RabbitMQ the ID of file in MinIO Storage and database
-            messageService.sendMessage("{\"id\": \"" + documentsDocumentDto.getId() + "\"}");
+            messageService.sendMessage(documentsDocumentDto.getId());
 
             // task_id has to be returned to the frontend, so set example task id
             // TODO: create new task (?)

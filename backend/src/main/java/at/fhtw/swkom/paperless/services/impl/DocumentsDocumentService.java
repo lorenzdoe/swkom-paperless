@@ -46,7 +46,7 @@ public class DocumentsDocumentService {
             DocumentsDocumentDto documentsDocumentDto = DocumentsDocumentDto.builder()
                     .title(filename)
                     .mimeType(filetype)
-                    .content(content)
+                    .content("")
                     .created(created)
                     .added(added)
                     .modified(modified)
