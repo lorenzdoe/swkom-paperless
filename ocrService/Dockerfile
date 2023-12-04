@@ -17,7 +17,11 @@ RUN tesseract -v
 # Open the port
 EXPOSE 8082
 
+# Copy the jar file
+COPY target/ocrService-0.0.1-SNAPSHOT.jar ocrService.jar
 
+# Run the jar file
+ENTRYPOINT ["java","-jar","ocrService.jar"]
 
 
 
