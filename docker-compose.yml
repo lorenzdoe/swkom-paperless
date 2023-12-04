@@ -57,13 +57,14 @@ services:
       RABBITMQ_DEFAULT_USER: PAPERLESS
       RABBITMQ_DEFAULT_PASS: PASSWORD
 
-#  ocrworker:
-#    build: ocrworker/
-#    restart: unless-stopped
-#    depends_on:
-#      - filestore
-#    ports:
-#      - 8090:8090
+  ocrworker:
+    build: ocrService/
+    restart: unless-stopped
+    depends_on:
+      - filestore
+      - rabbitmq
+    ports:
+      - 8090:8090
 
 # volumes:
   # miniostorage:

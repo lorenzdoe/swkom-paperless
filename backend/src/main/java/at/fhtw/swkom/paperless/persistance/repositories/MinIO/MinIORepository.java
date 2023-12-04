@@ -1,18 +1,20 @@
 package at.fhtw.swkom.paperless.persistance.repositories.MinIO;
 
-import io.minio.*;
-import io.minio.errors.ErrorResponseException;
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import java.io.*;
+import java.io.InputStream;
 
 @Slf4j
 @Getter
-@Service
+@Repository
 public class MinIORepository {
 
     private final MinioClient minioClient;
