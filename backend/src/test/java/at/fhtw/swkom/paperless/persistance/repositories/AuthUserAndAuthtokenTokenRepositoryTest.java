@@ -2,6 +2,8 @@ package at.fhtw.swkom.paperless.persistance.repositories;
 
 import at.fhtw.swkom.paperless.persistance.entities.AuthUser;
 import at.fhtw.swkom.paperless.persistance.entities.AuthtokenToken;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.AuthUserRepository;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.AuthtokenTokenRepository;
 import at.fhtw.swkom.paperless.services.OpenApiGeneratorApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.persistance.repositories;
 
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsStoragepath;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsStoragepathRepository;
 import at.fhtw.swkom.paperless.services.OpenApiGeneratorApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes={OpenApiGeneratorApplication.class})
 public class DocumentsStoragepathRepositoryTest {
 
-    @Autowired DocumentsStoragepathRepository documentsStoragepathRepository;
+    @Autowired
+    DocumentsStoragepathRepository documentsStoragepathRepository;
 
     @Test
     public void testSaveStoragepath() {

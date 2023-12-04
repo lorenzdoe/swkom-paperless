@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.services.comm;
+package at.fhtw.swkom.paperless.persistance.repositories.MinIO;
 
 import io.minio.*;
 import io.minio.errors.ErrorResponseException;
@@ -13,7 +13,7 @@ import java.io.*;
 @Slf4j
 @Getter
 @Service
-public class MinIOService {
+public class MinIORepository {
 
     private final MinioClient minioClient;
 
@@ -21,7 +21,7 @@ public class MinIOService {
     private String bucketName;
 
     @Autowired
-    public MinIOService(MinioClient minioClient) {
+    public MinIORepository(MinioClient minioClient) {
         this.minioClient = minioClient;
     }
 
@@ -60,36 +60,5 @@ public class MinIOService {
                 log.error("Could not close InputStream", e);
             }
         }
-    }
-
-    public File getDocumentFile(String id) {
-        try (InputStream stream = minioClient.getObject(
-                GetObjectArgs.builder()
-                        .bucket(bucketName)
-                        .object(id)
-                        .build())) {
-
-            return saveInputStreamToTempFile(stream);
-        } catch (ErrorResponseException e) {
-            System.out.println("Error response from MinIO" + e);
-        } catch (IOException e) {
-            System.out.println("Error reading stream from MinIO" + e);
-        } catch (Exception e) {
-            System.out.println("Error fetching document file from MinIO" + e);
-        }
-
-        return null;
-    }
-
-    private File saveInputStreamToTempFile(InputStream inputStream) throws IOException {
-        File tempFile = File.createTempFile("minio_temp_", ".tmp");
-        try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, length);
-            }
-        }
-        return tempFile;
     }
 }

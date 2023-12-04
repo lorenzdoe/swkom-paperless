@@ -1,10 +1,8 @@
 package at.fhtw.swkom.paperless.persistance.repositories;
 
-import at.fhtw.swkom.paperless.persistance.entities.DocumentsCorrespondent;
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsLog;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsLogRepository;
 import at.fhtw.swkom.paperless.services.OpenApiGeneratorApplication;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

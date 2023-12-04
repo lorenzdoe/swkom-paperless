@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.persistance.repositories;
 
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsNote;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsNoteRepository;
 import at.fhtw.swkom.paperless.services.OpenApiGeneratorApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

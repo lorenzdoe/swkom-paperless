@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.persistance.repositories;
+package at.fhtw.swkom.paperless.persistance.repositories.DB;
 
 import at.fhtw.swkom.paperless.persistance.entities.AuthUser;
 import org.springframework.data.jpa.repository.JpaRepository;

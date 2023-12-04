@@ -4,8 +4,8 @@ import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumenttypeDto;
 import at.fhtw.swkom.paperless.persistance.entities.AuthUser;
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsDocumenttype;
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsDocumenttypeMapper;
-import at.fhtw.swkom.paperless.persistance.repositories.AuthUserRepository;
-import at.fhtw.swkom.paperless.persistance.repositories.DocumentsDocumenttypeRepository;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.AuthUserRepository;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsDocumenttypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

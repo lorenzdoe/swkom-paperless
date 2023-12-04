@@ -2,7 +2,7 @@
 package at.fhtw.swkom.paperless.services.impl;
 
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsUisettingMapper;
-import at.fhtw.swkom.paperless.persistance.repositories.DocumentsUisettingRepository;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsUisettingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3,8 +3,8 @@ package at.fhtw.swkom.paperless.services.impl;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.persistance.entities.DocumentsDocument;
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsDocumentMapper;
-import at.fhtw.swkom.paperless.persistance.repositories.DocumentsDocumentRepository;
-import at.fhtw.swkom.paperless.services.comm.MinIOService;
+import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsDocumentRepository;
+import at.fhtw.swkom.paperless.persistance.repositories.MinIO.MinIORepository;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ import java.util.List;
 @Service
 public class DocumentsDocumentService {
     private final DocumentsDocumentRepository documentsDocumentRepository;
-    private final MinIOService minIOService;
+    private final MinIORepository minIORepository;
     private final DocumentsDocumentMapper documentsDocumentMapper;
 
     @Autowired
-    public DocumentsDocumentService(MinIOService minIOService,
+    public DocumentsDocumentService(MinIORepository minIORepository,
                                     DocumentsDocumentRepository documentsDocumentRepository,
                                     DocumentsDocumentMapper documentsDocumentMapper) {
-        this.minIOService = minIOService;
+        this.minIORepository = minIORepository;
         this.documentsDocumentRepository = documentsDocumentRepository;
         this.documentsDocumentMapper = documentsDocumentMapper;
     }
@@ -67,7 +67,7 @@ public class DocumentsDocumentService {
                 log.info("File name: {}", file.getOriginalFilename());
                 log.info("File size: {}", file.getSize());
                 log.info("File type: {}", file.getContentType());
-                minIOService.saveInputStream(saved.getId().toString(), file.getInputStream(), file.getSize(), filetype);
+                minIORepository.saveInputStream(saved.getId().toString(), file.getInputStream(), file.getSize(), filetype);
             }
             return savedDto;
 
