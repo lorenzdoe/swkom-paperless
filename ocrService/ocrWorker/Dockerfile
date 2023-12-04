@@ -15,7 +15,6 @@ RUN tesseract --list-langs
 RUN tesseract -v
 
 
-
 # Open the port
 EXPOSE 8090
 

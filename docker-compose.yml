@@ -37,20 +37,22 @@ services:
 
   filestore:
     image: quay.io/minio/minio
-    volumes: 
-      - miniostorage:/data
+    # volumes: 
+    #   - miniostorage:/data
     restart: unless-stopped
     environment:
       MINIO_ROOT_USER: PAPERLESS
       MINIO_ROOT_PASSWORD: PASSWORD
     ports:
-      - 9090:9090           # this lets us access the minio ui on localhost:9090
+      - 9000:9000          # just for development
+      - 9090:9090          # for browser access to the management ui
     command: server /data --console-address ":9090"
 
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - 15672:15672
+      - 5672:5672     # just for development
+      - 15672:15672   # for browser access to the management ui
     environment:
       RABBITMQ_DEFAULT_USER: PAPERLESS
       RABBITMQ_DEFAULT_PASS: PASSWORD
@@ -63,6 +65,6 @@ services:
 #    ports:
 #      - 8090:8090
 
-volumes:
-  miniostorage:
+# volumes:
+  # miniostorage:
   # TODO: add volumes for postgres, rabbitmq
