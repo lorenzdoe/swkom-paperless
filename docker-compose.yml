@@ -64,7 +64,7 @@ services:
       - filestore
       - rabbitmq
     ports:
-      - 8090:8090
+      - 8082:8082
 
 # volumes:
   # miniostorage:

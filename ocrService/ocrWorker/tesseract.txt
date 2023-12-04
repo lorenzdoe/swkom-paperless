@@ -1,5 +1,5 @@
 docker build -t ocrworker .
-docker run -t -i -p 8090:8090 --name tesseract ocrworker
+docker run -t -i -p 8082:8082 --name tesseract ocrworker
 
 
 # tutorial: https://medium.com/gft-engineering/creating-an-ocr-microservice-using-tesseract-pdfbox-and-docker-155beb7f2623
