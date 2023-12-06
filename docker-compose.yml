@@ -21,8 +21,6 @@ services:
   frontend:
     build: frontend/src-ui/
     restart: unless-stopped
-    depends_on:
-      - backend
     ports:
       - 8001:80
 
@@ -57,14 +55,19 @@ services:
       RABBITMQ_DEFAULT_USER: PAPERLESS
       RABBITMQ_DEFAULT_PASS: PASSWORD
 
-  ocrworker:
-    build: ocrService/
-    restart: unless-stopped
-    depends_on:
-      - filestore
-      - rabbitmq
-    ports:
-      - 8082:8082
+  # ocrworker:
+  #   build: ocrService/
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - filestore
+  #     - rabbitmq
+  #   environment:
+  #     MINIO_URL: http://filestore:9000
+  #     SPRING_RABBITMQ_HOST: rabbitmq
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
+  #     TESSERACT_PATH: /usr/share/tesseract-ocr/4.00/tessdata
+  #   ports:
+  #     - 8082:8082
 
 # volumes:
   # miniostorage:

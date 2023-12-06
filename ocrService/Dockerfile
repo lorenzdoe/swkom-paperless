@@ -1,27 +1,21 @@
-FROM openjdk:17
+# OpenJDK 17 Image based on Debian
+FROM openjdk:17-bullseye
 
-RUN apk update
+# Update the package list and install tesseract-ocr
+RUN apt-get update && \
+    apt-get install -y tesseract-ocr && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install tesseract library
-RUN apk add --no-cache tesseract-ocr
+# Download the English language package for Tesseract
+RUN mkdir -p /usr/share/tesseract-ocr/4.00/tessdata
+ADD https://github.com/tesseract-ocr/tessdata_best/raw/main/eng.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
 
-# Download last language package
-RUN mkdir -p /usr/share/tessdata
-#ADD https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
-ADD https://github.com/tesseract-ocr/tessdata_best/blob/main/eng.traineddata /usr/share/tessdata
+# Verify Tesseract installation
+RUN tesseract --version && \
+    tesseract --list-langs
 
-# Check the installation status
-RUN tesseract --list-langs
-RUN tesseract -v
-
-# Open the port
 EXPOSE 8082
 
-# Copy the jar file
-COPY target/ocrService-0.0.1-SNAPSHOT.jar ocrService.jar
+COPY target/services-0.0.1-SNAPSHOT.jar ocrService.jar
 
-# Run the jar file
 ENTRYPOINT ["java","-jar","ocrService.jar"]
-
-
-
