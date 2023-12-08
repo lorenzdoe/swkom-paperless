@@ -6,6 +6,10 @@ This is the semester project for the Software Component Systems course at FH Tec
 
 `swkom-paperless` is a web application that allows users to manage their documents digitally. The frontend is built with Angular and can be found at [github.com/paperless-ngx/paperless-ngx.git](https://github.com/paperless-ngx/paperless-ngx.git), while the backend is a Spring Boot application. The application can be started using Docker Compose.
 
+## Architecture
+
+<img src="img/architecture.png" style="display:block;margin-left:auto;margin-right: auto;width: 60%;"/>
+
 ## Getting Started
 
 To run the application, you will need to have Docker and Docker Compose installed on your machine. Once you have those installed, follow these steps:
