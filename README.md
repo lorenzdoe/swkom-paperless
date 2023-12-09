@@ -10,12 +10,24 @@ This is the semester project for the Software Component Systems course at FH Tec
 
 <img src="img/architecture.png" style="display:block;margin-left:auto;margin-right: auto;width: 60%;"/>
 
+## Prerequisites
+
+- Docker
+- Docker Compose
+- Java 17 and Maven for building the jar files (this will be automated by Docker in the future)
+
 ## Getting Started
 
 To run the application, you will need to have Docker and Docker Compose installed on your machine. Once you have those installed, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/lorenzdoe/swkom-paperless.git`
 2. Navigate to the project directory: `cd swkom-paperless`
+3. Build jar files for the backend and ocr service
+    - `cd backend`
+    - `mvn clean package`
+    - `cd ../ocr`
+    - `mvn clean package`
+    - `cd ..`
 3. Start the application: `docker-compose up`
 4. Open your web browser and navigate to `http://localhost:8001`
 
