@@ -61,7 +61,9 @@ services:
     depends_on:
       - filestore
       - rabbitmq
+      - elasticsearch
     environment:
+      ELASTICSEARCH_HOST: elasticsearch
       MINIO_URL: http://filestore:9000
       SPRING_RABBITMQ_HOST: rabbitmq
       DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
@@ -85,6 +87,7 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+
 # volumes:
   # miniostorage:
   # TODO: add volumes for postgres, rabbitmq
