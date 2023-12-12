@@ -1,5 +1,7 @@
 package at.fhtw.services.ocr;
 
+import at.fhtw.services.dto.Document;
+import at.fhtw.services.elasticsearch.ElasticSearchService;
 import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
