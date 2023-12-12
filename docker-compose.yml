@@ -69,6 +69,22 @@ services:
     ports:
       - 8082:8082
 
+  elasticsearch:
+    image: elasticsearch:7.16.1
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "xpack.security.enabled=false"
+#      - "xpack.security.enrollment.enabled=false"
+    # ulimits:
+    #   memlock:
+    #     soft: -1
+    #     hard: -1
+    ports:
+      - 9200:9200
+      - 9300:9300
 # volumes:
   # miniostorage:
   # TODO: add volumes for postgres, rabbitmq
