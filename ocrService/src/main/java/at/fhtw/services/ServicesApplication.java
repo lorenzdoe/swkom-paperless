@@ -7,7 +7,7 @@ import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGe
 
 @SpringBootApplication
 @ComponentScan(
-		basePackages = {"at.fhtw.config.comm", "at.fhtw.persistance", "at.fhtw.services.comm", "at.fhtw.config.elasticsearch", "at.fhtw.services.elasticsearch"},
+		basePackages = {"at.fhtw.config.comm", "at.fhtw.persistance", "at.fhtw.services.elasticsearch"},
 		nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 public class ServicesApplication {

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.OffsetDateTime;
@@ -12,17 +14,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "document_index")
 public class Document {
+
+    @Id
     private Integer id;
 
+    @Field
     private JsonNullable<Integer> correspondent = JsonNullable.<Integer>undefined();
 
+    @Field
     private JsonNullable<Integer> documentType = JsonNullable.<Integer>undefined();
 
+    @Field
     private JsonNullable<Integer> storagePath = JsonNullable.<Integer>undefined();
 
+    @Field
     private JsonNullable<String> title = JsonNullable.<String>undefined();
 
+    @Field
     private JsonNullable<String> content = JsonNullable.<String>undefined();
 
     @Valid
