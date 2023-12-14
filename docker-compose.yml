@@ -59,15 +59,12 @@ services:
     build: ocrService/
     restart: unless-stopped
     depends_on:
-#      filestore:
-#        condition: service_healthy
-#      rabbitmq:
-#        condition: service_started
-#      elasticsearch:
-#        condition: service_healthy
-      - filestore
-      - rabbitmq
-      - elasticsearch
+      filestore:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+      elasticsearch:
+        condition: service_healthy
     environment:
       ELASTICSEARCH_HOST: elasticsearch
       MINIO_URL: http://filestore:9000
@@ -96,7 +93,7 @@ services:
     healthcheck:
       interval: 10s
       retries: 80
-      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:8200/
+      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:9200/
 
 # volumes:
   # miniostorage:
