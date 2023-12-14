@@ -59,6 +59,12 @@ services:
     build: ocrService/
     restart: unless-stopped
     depends_on:
+#      filestore:
+#        condition: service_started
+#      rabbitmq:
+#        condition: service_started
+#      elasticsearch:
+#        condition: service_started
       - filestore
       - rabbitmq
       - elasticsearch
