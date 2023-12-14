@@ -37,11 +37,17 @@ public class MessageReceiverService {
         log.info("message from queue " + id);
         try {
 
-//            MultipartFile documentFile = minioRepository.getDocumentFile(id);
-//            String ocrResult = ocrService.performOcr(documentFile);
-//
-//            log.info("ocred: " + ocrResult);
-//            databaseUpdater.updateDocumentContentById(Integer.parseInt(id), ocrResult);
+            MultipartFile documentFile = minioRepository.getDocumentFile(id);
+            String ocrResult = ocrService.performOcr(documentFile);
+
+            log.info("ocred: " + ocrResult);
+            databaseUpdater.updateDocumentContentById(Integer.parseInt(id), ocrResult);
+
+            Document document = new Document();
+            document.setTitle(documentFile.getOriginalFilename());
+            document.setContent(ocrResult);
+            elasticSearchService.saveToElasticsearch(document);
+
             Document document1 = new Document();
             document1.setTitle("Title");
             document1.setContent("bla lorenz amelie ana");
@@ -59,11 +65,11 @@ public class MessageReceiverService {
 
             List<Document> documentsList = elasticSearchService.search("bla");
 
-            for (Document document : documentsList) {
-                System.out.println(document.getTitle());
-                System.out.println(document.getContent());
-                log.info(String.valueOf(document.getTitle()));
-                log.info(String.valueOf(document.getContent()));
+            for (Document doc : documentsList) {
+                System.out.println(doc.getTitle());
+                System.out.println(doc.getContent());
+                log.info(String.valueOf(doc.getTitle()));
+                log.info(String.valueOf(doc.getContent()));
             }
 
             // System.out.println("OCR Result: " + ocrResult);

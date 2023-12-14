@@ -60,11 +60,11 @@ services:
     restart: unless-stopped
     depends_on:
 #      filestore:
-#        condition: service_started
+#        condition: service_healthy
 #      rabbitmq:
 #        condition: service_started
 #      elasticsearch:
-#        condition: service_started
+#        condition: service_healthy
       - filestore
       - rabbitmq
       - elasticsearch
@@ -93,6 +93,10 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    healthcheck:
+      interval: 10s
+      retries: 80
+      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:8200/
 
 # volumes:
   # miniostorage:
