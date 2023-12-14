@@ -35,6 +35,8 @@ public class MessageReceiverService {
 
             MultipartFile documentFile = minioRepository.getDocumentFile(id);
             String ocrResult = ocrService.performOcr(documentFile);
+
+            log.info("ocred: " + ocrResult);
             databaseUpdater.updateDocumentContentById(Integer.parseInt(id), ocrResult);
 
             elasticSearchService.saveToElasticsearch((Document) documentFile);
