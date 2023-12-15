@@ -20,7 +20,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class ElasticSearchService implements SearchIndexService {
-    // DocumentsRepository documentsRepository;
+//     DocumentsRepository documentsRepository;
 
     private final ElasticsearchClient esClient;
 
@@ -39,7 +39,6 @@ public class ElasticSearchService implements SearchIndexService {
 
     @Override
     public Result indexDocument(Document document) throws IOException {
-        // do indexing with ElasticSearch
         IndexResponse response = esClient.index(i -> i
                 .index(ElasticSearchConfig.DOCUMENTS_INDEX_NAME)
                 .id(document.getId().toString())

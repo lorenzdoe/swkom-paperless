@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Slf4j
@@ -44,18 +45,24 @@ public class MessageReceiverService {
             log.info("ocred: " + ocrResult);
             databaseUpdater.updateDocumentContentById(Integer.parseInt(id), ocrResult);
 
-            Document document = new Document();
-            document.setId(id);
-            document.setTitle(documentFile.getOriginalFilename());
-            document.setContent(ocrResult);
+            Document doc = new Document();
+            doc.setId(Integer.parseInt(id));
+            doc.setTitle( JsonNullable.of(documentFile.getOriginalFilename()) );
+            doc.setAdded(OffsetDateTime.now() );
+            doc.setCreated(OffsetDateTime.now());
+            doc.setArchivedFileName( JsonNullable.of(documentFile.getOriginalFilename()));
+            doc.setOriginalFileName( JsonNullable.of(documentFile.getOriginalFilename()));
+            doc.setContent( JsonNullable.of(ocrResult));
 
-            // do ElasticSearch indexing
+            // indexing
             try {
-                elasticSearchService.indexDocument(document);
+                elasticSearchService.indexDocument(doc);
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
-//            elasticSearchService.saveToElasticsearch(document);
+
+            // testing
+//            elasticSearchService.saveToElasticsearch(doc);
 //
 //            Document document1 = new Document();
 //            document1.setTitle("Title");
