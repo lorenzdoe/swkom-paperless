@@ -73,9 +73,9 @@ public class ElasticSearchService implements SearchIndexService{
         }
     }
 
-    public List<DocumentsDocumentDto> getDocumentByTitle(String searchText) {
+    public List<Document> getDocumentByTitle(String searchText) {
         try {
-            SearchResponse<DocumentsDocumentDto> response = esClient.search(s -> s
+            SearchResponse<Document> response = esClient.search(s -> s
                             .index("documents")
                             .query(q -> q
                                     .match(t -> t
@@ -83,7 +83,7 @@ public class ElasticSearchService implements SearchIndexService{
                                             .query(searchText)
                                     )
                             ),
-                    DocumentsDocumentDto.class
+                    Document.class
             );
 
             TotalHits total = response.hits().total();
@@ -99,9 +99,9 @@ public class ElasticSearchService implements SearchIndexService{
                 log.info("There are more than " + total.value() + " results");
             }
 
-            List<Hit<DocumentsDocumentDto>> hits = response.hits().hits();
-            for (Hit<DocumentsDocumentDto> hit: hits) {
-                DocumentsDocumentDto document = hit.source();
+            List<Hit<Document>> hits = response.hits().hits();
+            for (Hit<Document> hit: hits) {
+                Document document = hit.source();
                 assert document != null;
                 log.info("Found product " + document.getTitle());
             }

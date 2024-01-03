@@ -55,6 +55,8 @@ public class MessageReceiverService {
             doc.setOriginalFileName( JsonNullable.of(documentFile.getOriginalFilename()));
             doc.setContent( JsonNullable.of(ocrResult));
 
+            log.info("ID in message rec: " + doc.getId());
+            log.info("Content in message rec: " + doc.getContent());
             log.info("Title in message rec: " + doc.getTitle());
 
             // indexing
