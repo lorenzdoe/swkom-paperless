@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.services.elasticsearch;
 
 import at.fhtw.swkom.paperless.config.elasticsearch.ElasticSearchConfig;
+import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.persistance.repositories.DocumentsRepository;
 import at.fhtw.swkom.paperless.services.dto.Document;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
@@ -8,11 +9,16 @@ import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.elasticsearch.core.DeleteResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.core.search.TotalHits;
+import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +73,44 @@ public class ElasticSearchService implements SearchIndexService{
         }
     }
 
+    public List<DocumentsDocumentDto> getDocumentByTitle(String searchText) {
+        try {
+            SearchResponse<DocumentsDocumentDto> response = esClient.search(s -> s
+                            .index("documents")
+                            .query(q -> q
+                                    .match(t -> t
+                                            .field("title")
+                                            .query(searchText)
+                                    )
+                            ),
+                    DocumentsDocumentDto.class
+            );
+
+            TotalHits total = response.hits().total();
+            boolean isExactResult = false;
+            if (total != null) {
+                isExactResult = total.relation() == TotalHitsRelation.Eq;
+            }
+
+            if (isExactResult) {
+                log.info("There are " + total.value() + " results");
+            } else {
+                assert total != null;
+                log.info("There are more than " + total.value() + " results");
+            }
+
+            List<Hit<DocumentsDocumentDto>> hits = response.hits().hits();
+            for (Hit<DocumentsDocumentDto> hit: hits) {
+                DocumentsDocumentDto document = hit.source();
+                assert document != null;
+                log.info("Found product " + document.getTitle());
+            }
+        } catch (IOException e) {
+            log.error("Failed to get document titled=" + searchText + " from elasticsearch: " + e);
+        }
+        return Collections.emptyList();
+    }
+
     @Override
     public boolean deleteDocumentById(int id) {
         DeleteResponse result = null;
@@ -82,11 +126,12 @@ public class ElasticSearchService implements SearchIndexService{
         return result.result()==Result.Deleted;
     }
 
+//    public List<Document> search(String query) {
+//        return documentsRepository.findByTitleContaining(query);
+//    }
+}
+
 //    public void saveToElasticsearch(Document document) {
 //        log.info("savetoelasticsearch " + document.toString());
 //        documentsRepository.save(document);
 //    }
-    public List<Document> search(String query) {
-        return documentsRepository.findByTitleContaining(query);
-    }
-}

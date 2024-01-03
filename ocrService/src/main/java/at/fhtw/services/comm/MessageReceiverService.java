@@ -42,6 +42,7 @@ public class MessageReceiverService {
             MultipartFile documentFile = minioRepository.getDocumentFile(id);
             String ocrResult = ocrService.performOcr(documentFile);
 
+            log.info("documentFile name: " + documentFile.getName() + " documentFile original filename: " + documentFile.getOriginalFilename());
             log.info("ocred: " + ocrResult);
             databaseUpdater.updateDocumentContentById(Integer.parseInt(id), ocrResult);
 
@@ -54,6 +55,8 @@ public class MessageReceiverService {
             doc.setOriginalFileName( JsonNullable.of(documentFile.getOriginalFilename()));
             doc.setContent( JsonNullable.of(ocrResult));
 
+            log.info("Title in message rec: " + doc.getTitle());
+
             // indexing
             try {
                 elasticSearchService.indexDocument(doc);
@@ -62,6 +65,8 @@ public class MessageReceiverService {
             }
 
             // testing
+            //List<Document> documentsList = elasticSearchService.getDocumentByTitle("simply");
+
 //            elasticSearchService.saveToElasticsearch(doc);
 //
 //            Document document1 = new Document();

@@ -8,12 +8,17 @@ import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.elasticsearch.core.DeleteResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.core.search.TotalHits;
+import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +85,44 @@ public class ElasticSearchService implements SearchIndexService {
         if (result.result() != Result.Deleted )
             log.warn(result.toString());
         return result.result()==Result.Deleted;
+    }
+
+    public List<Document> getDocumentByTitle(String searchText) {
+        try {
+            SearchResponse<Document> response = esClient.search(s -> s
+                            .index("documents")
+                            .query(q -> q
+                                    .match(t -> t
+                                            .field("title")
+                                            .query(searchText)
+                                    )
+                            ),
+                    Document.class
+            );
+
+            TotalHits total = response.hits().total();
+            boolean isExactResult = false;
+            if (total != null) {
+                isExactResult = total.relation() == TotalHitsRelation.Eq;
+            }
+
+            if (isExactResult) {
+                log.info("There are " + total.value() + " results");
+            } else {
+                assert total != null;
+                log.info("There are more than " + total.value() + " results");
+            }
+
+            List<Hit<Document>> hits = response.hits().hits();
+            for (Hit<Document> hit: hits) {
+                Document document = hit.source();
+                assert document != null;
+                log.info("Found product " + document.getTitle());
+            }
+        } catch (IOException e) {
+            log.error("Failed to get document titled=" + searchText + " from elasticsearch: " + e);
+        }
+        return Collections.emptyList();
     }
 
 //    public void saveToElasticsearch(Document document) {
