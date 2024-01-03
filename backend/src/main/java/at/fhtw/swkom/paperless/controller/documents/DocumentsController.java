@@ -3,15 +3,22 @@ package at.fhtw.swkom.paperless.controller.documents;
 import at.fhtw.swkom.paperless.controller.ApiUtil;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.services.comm.MessageService;
+import at.fhtw.swkom.paperless.services.dto.Document;
+import at.fhtw.swkom.paperless.services.dto.GetDocuments200Response;
+import at.fhtw.swkom.paperless.services.elasticsearch.ElasticSearchService;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import at.fhtw.swkom.paperless.services.impl.DocumentsDocumentService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import jakarta.annotation.Generated;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +41,9 @@ public class DocumentsController implements Documents {
 
     @Autowired
     private DocumentsDocumentService documentsDocumentService;
+
+    @Autowired
+    ElasticSearchService elasticSearchService;
     @Autowired
     private MessageService messageService;
     @Override
@@ -69,4 +79,20 @@ public class DocumentsController implements Documents {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent) {
+
+        List<Document> documents = elasticSearchService.getDocumentByTitle(query);
+
+        String exampleString = "{ \"next\" : 6, \"all\" : [ 5, 5 ], \"previous\" : 1, \"count\" : 0, \"results\" : [";
+        for (Document document : documents) {
+            exampleString +="{ \"owner\" : 4, \"user_can_change\" : true, \"archive_serial_number\" : 2, \"notes\" : [ { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : " + document.getId() + ", \"user\" : 1 }, { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : " + document.getId() + ", \"user\" : 1 } ], \"added\" : \"added\", \"created\" : \"created\", \"title\" : \"" + document.getTitle() + "\", \"content\" : \"" + document.getContent() + "\", \"tags\" : [ 3, 3 ], \"storage_path\" : 9, \"archived_file_name\" : \"archived_file_name\", \"modified\" : \"modified\", \"correspondent\" : 2, \"original_file_name\" : \"original_file_name\", \"id\" : 5, \"created_date\" : \"created_date\", \"document_type\" : 7 }, { \"owner\" : 4, \"user_can_change\" : true, \"archive_serial_number\" : 2, \"notes\" : [ { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : 7, \"user\" : 1 }, { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : 7, \"user\" : 1 } ], \"added\" : \"added\", \"created\" : \"created\", \"title\" : \"" + document.getTitle() + "\", \"content\" :  \"" + document.getContent() + " \", \"tags\" : [ 3, 3 ], \"storage_path\" : 9, \"archived_file_name\" : \"archived_file_name\", \"modified\" : \"modified\", \"correspondent\" : 2, \"original_file_name\" : \"original_file_name\", \"id\" : 5, \"created_date\" : \"created_date\", \"document_type\" : 7 }";
+        }
+
+        exampleString += "] }";
+        ApiUtil.setExampleResponse(request, "application/json", exampleString);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

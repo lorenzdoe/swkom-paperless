@@ -28,7 +28,7 @@ public class Document {
 
     private JsonNullable<Integer> storagePath = JsonNullable.<Integer>undefined();
 
-    private JsonNullable<String> title = JsonNullable.<String>undefined();
+    private String title;
 
     private JsonNullable<String> content = JsonNullable.<String>undefined();
 
@@ -134,7 +134,7 @@ public class Document {
     }
 
     public Document title(String title) {
-        this.title = JsonNullable.of(title);
+        this.title = title;
         return this;
     }
 
@@ -145,14 +145,17 @@ public class Document {
 
     @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty("title")
-    public JsonNullable<String> getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(JsonNullable<String> title) {
+//    public void setTitle(JsonNullable<String> title) {
+//        this.title = title;
+//    }
+
+    public void setTitle(String title) {
         this.title = title;
     }
-
     public Document content(String content) {
         this.content = JsonNullable.of(content);
         return this;
@@ -341,39 +344,39 @@ public class Document {
         this.archivedFileName = archivedFileName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Document document = (Document) o;
-        return Objects.equals(this.id, document.id) &&
-                equalsNullable(this.correspondent, document.correspondent) &&
-                equalsNullable(this.documentType, document.documentType) &&
-                equalsNullable(this.storagePath, document.storagePath) &&
-                equalsNullable(this.title, document.title) &&
-                equalsNullable(this.content, document.content) &&
-                equalsNullable(this.tags, document.tags) &&
-                Objects.equals(this.created, document.created) &&
-                Objects.equals(this.createdDate, document.createdDate) &&
-                Objects.equals(this.modified, document.modified) &&
-                Objects.equals(this.added, document.added) &&
-                equalsNullable(this.archiveSerialNumber, document.archiveSerialNumber) &&
-                equalsNullable(this.originalFileName, document.originalFileName) &&
-                equalsNullable(this.archivedFileName, document.archivedFileName);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        Document document = (Document) o;
+//        return Objects.equals(this.id, document.id) &&
+//                equalsNullable(this.correspondent, document.correspondent) &&
+//                equalsNullable(this.documentType, document.documentType) &&
+//                equalsNullable(this.storagePath, document.storagePath) &&
+//                equalsNullable(this.title, document.title) &&
+//                equalsNullable(this.content, document.content) &&
+//                equalsNullable(this.tags, document.tags) &&
+//                Objects.equals(this.created, document.created) &&
+//                Objects.equals(this.createdDate, document.createdDate) &&
+//                Objects.equals(this.modified, document.modified) &&
+//                Objects.equals(this.added, document.added) &&
+//                equalsNullable(this.archiveSerialNumber, document.archiveSerialNumber) &&
+//                equalsNullable(this.originalFileName, document.originalFileName) &&
+//                equalsNullable(this.archivedFileName, document.archivedFileName);
+//    }
 
     private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
         return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, hashCodeNullable(correspondent), hashCodeNullable(documentType), hashCodeNullable(storagePath), hashCodeNullable(title), hashCodeNullable(content), hashCodeNullable(tags), created, createdDate, modified, added, hashCodeNullable(archiveSerialNumber), hashCodeNullable(originalFileName), hashCodeNullable(archivedFileName));
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, hashCodeNullable(correspondent), hashCodeNullable(documentType), hashCodeNullable(storagePath), hashCodeNullable(title), hashCodeNullable(content), hashCodeNullable(tags), created, createdDate, modified, added, hashCodeNullable(archiveSerialNumber), hashCodeNullable(originalFileName), hashCodeNullable(archivedFileName));
+//    }
 
     private static <T> int hashCodeNullable(JsonNullable<T> a) {
         if (a == null) {

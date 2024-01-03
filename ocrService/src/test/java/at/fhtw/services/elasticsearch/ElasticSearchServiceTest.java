@@ -27,7 +27,7 @@ class ElasticSearchServiceTest {
     void setup() {
         doc = new Document();
         doc.setId(-12345678);
-        doc.setTitle( JsonNullable.of("Rocky Road To Dublin") );
+        doc.setTitle( "Rocky Road To Dublin" );
         doc.setAdded(OffsetDateTime.now() );
         doc.setCreated(OffsetDateTime.now());
         doc.setArchivedFileName( JsonNullable.of("RockyRoadToDublin.pdf") );

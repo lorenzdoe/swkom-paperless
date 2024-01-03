@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +82,7 @@ public class ElasticSearchService implements SearchIndexService{
                                     .match(t -> t
                                             .field("title")
                                             .query(searchText)
+                                            .fuzziness(String.valueOf(2))
                                     )
                             ),
                     Document.class
@@ -100,11 +102,14 @@ public class ElasticSearchService implements SearchIndexService{
             }
 
             List<Hit<Document>> hits = response.hits().hits();
+            List<Document> returnDocuments = new ArrayList<>();
             for (Hit<Document> hit: hits) {
                 Document document = hit.source();
                 assert document != null;
+                returnDocuments.add(document);
                 log.info("Found product " + document.getTitle());
             }
+            return returnDocuments;
         } catch (IOException e) {
             log.error("Failed to get document titled=" + searchText + " from elasticsearch: " + e);
         }

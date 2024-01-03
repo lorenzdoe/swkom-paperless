@@ -41,6 +41,7 @@ public class MessageReceiverService {
 
             MultipartFile documentFile = minioRepository.getDocumentFile(id);
             String ocrResult = ocrService.performOcr(documentFile);
+            String title = databaseUpdater.retrieveTitleFromDatabase(Integer.valueOf(id));
 
             log.info("documentFile name: " + documentFile.getName() + " documentFile original filename: " + documentFile.getOriginalFilename());
             log.info("ocred: " + ocrResult);
@@ -48,7 +49,7 @@ public class MessageReceiverService {
 
             Document doc = new Document();
             doc.setId(Integer.parseInt(id));
-            doc.setTitle( JsonNullable.of(documentFile.getOriginalFilename()) );
+            doc.setTitle( title );
             doc.setAdded(OffsetDateTime.now() );
             doc.setCreated(OffsetDateTime.now());
             doc.setArchivedFileName( JsonNullable.of(documentFile.getOriginalFilename()));
