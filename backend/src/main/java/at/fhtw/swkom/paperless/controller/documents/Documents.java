@@ -415,7 +415,6 @@ public interface Documents {
             @Parameter(name = "document", description = "") @RequestPart(value = "document", required = false) List<MultipartFile> document
     ) {
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
     /**

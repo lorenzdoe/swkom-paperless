@@ -8,15 +8,21 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - postgres
-      - filestore
-      - rabbitmq
+      postgres:
+        condition: service_started
+      filestore:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+      elasticsearch:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/swkom
       SPRING_DATASOURCE_USERNAME: paperless
       SPRING_DATASOURCE_PASSWORD: pwd123456
       MINIO_URL: http://filestore:9000
       SPRING_RABBITMQ_HOST: rabbitmq
+      ELASTICSEARCH_HOST: elasticsearch
   
   frontend:
     build: frontend/src-ui/
@@ -80,7 +86,8 @@ services:
       - discovery.type=single-node
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #      - "xpack.security.enabled=false"
 #      - "xpack.security.enrollment.enabled=false"
 #     ulimits:
