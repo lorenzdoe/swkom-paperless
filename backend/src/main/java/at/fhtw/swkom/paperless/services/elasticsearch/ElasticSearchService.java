@@ -76,6 +76,10 @@ public class ElasticSearchService implements SearchIndexService{
 
     public List<Document> getDocumentByTitle(String searchText) {
         try {
+            if (searchText == null || searchText.isEmpty()) {
+                log.debug("No search text provided");
+                return Collections.emptyList();
+            }
             SearchResponse<Document> response = esClient.search(s -> s
                             .index("documents")
                             .query(q -> q
@@ -110,7 +114,7 @@ public class ElasticSearchService implements SearchIndexService{
                 log.info("Found product " + document.getTitle());
             }
             return returnDocuments;
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Failed to get document titled=" + searchText + " from elasticsearch: " + e);
         }
         return Collections.emptyList();

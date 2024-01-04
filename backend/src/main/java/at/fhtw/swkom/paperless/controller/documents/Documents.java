@@ -48,7 +48,7 @@ public interface Documents {
     )
     @RequestMapping(
             method = RequestMethod.DELETE,
-            value = "/api/documents/{id}"
+            value = "/api/documents/{id}/"
     )
     default ResponseEntity<Void> deleteDocument(
             @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id
@@ -105,7 +105,7 @@ public interface Documents {
     )
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/api/documents/{id}",
+            value = "/api/documents/{id}/",
             produces = { "application/json" }
     )
     default ResponseEntity<GetDocument200Response> getDocument(
