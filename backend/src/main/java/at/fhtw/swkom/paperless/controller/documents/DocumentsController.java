@@ -3,13 +3,16 @@ package at.fhtw.swkom.paperless.controller.documents;
 import at.fhtw.swkom.paperless.controller.ApiUtil;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.services.comm.MessageService;
+import at.fhtw.swkom.paperless.services.dto.BulkEditRequest;
 import at.fhtw.swkom.paperless.services.dto.Document;
 import at.fhtw.swkom.paperless.services.dto.GetDocuments200Response;
 import at.fhtw.swkom.paperless.services.elasticsearch.ElasticSearchService;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import at.fhtw.swkom.paperless.services.impl.DocumentsDocumentService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,6 +86,7 @@ public class DocumentsController implements Documents {
         }
     }
 
+    @Override
     public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent) {
 
         List<Document> documents = elasticSearchService.getDocumentByTitle(query);
@@ -101,6 +107,21 @@ public class DocumentsController implements Documents {
         returnString += "] }";
         ApiUtil.setExampleResponse(request, "application/json", returnString);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Void> bulkEdit(
+            @Parameter(name = "BulkEditRequest", description = "") @Valid @RequestBody(required = false) BulkEditRequest bulkEditRequest
+    ) {
+        log.info("bulkEdit Request: " + bulkEditRequest.toString());
+        if(bulkEditRequest.getDocuments() != null && bulkEditRequest.getMethod().equals("delete")) {
+            log.info("documents: " + bulkEditRequest.getDocuments().toString());
+            for(Integer id : bulkEditRequest.getDocuments()) {
+                elasticSearchService.deleteDocumentById(id);
+                documentsDocumentService.deleteDocumentById(id);
+            }
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

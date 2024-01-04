@@ -77,4 +77,8 @@ public class DocumentsDocumentService {
         }
     }
 
+    public void deleteDocumentById(Integer id) {
+        documentsDocumentRepository.deleteById(Long.valueOf(id));
+        minIORepository.deleteFile(id.toString());
+    }
 }

@@ -1,9 +1,6 @@
 package at.fhtw.swkom.paperless.persistance.repositories.MinIO;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +58,19 @@ public class MinIORepository {
             } catch (Exception e) {
                 log.error("Could not close InputStream", e);
             }
+        }
+    }
+
+    public void deleteFile(String string) {
+        try {
+            RemoveObjectArgs removeObjectArgs = RemoveObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(string)
+                    .build();
+            minioClient.removeObject(removeObjectArgs);
+            log.info("Successfully deleted '" + string + "' from bucket '" + bucketName + "'.");
+        } catch (Exception e) {
+            log.error("Could not delete file from MinIO", e);
         }
     }
 }

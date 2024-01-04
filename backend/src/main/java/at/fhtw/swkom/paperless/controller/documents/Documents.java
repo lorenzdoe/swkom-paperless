@@ -363,7 +363,7 @@ public interface Documents {
     )
     @RequestMapping(
             method = RequestMethod.PUT,
-            value = "/api/documents/{id}",
+            value = "/api/documents/{id}/",
             produces = { "application/json" },
             consumes = { "application/json" }
     )
