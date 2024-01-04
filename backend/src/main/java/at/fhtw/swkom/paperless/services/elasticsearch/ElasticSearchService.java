@@ -86,7 +86,7 @@ public class ElasticSearchService implements SearchIndexService{
                                     .match(t -> t
                                             .field("title")
                                             .query(searchText)
-                                            .fuzziness(String.valueOf(2))
+                                            .fuzziness(String.valueOf(10))
                                     )
                             ),
                     Document.class
