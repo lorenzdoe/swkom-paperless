@@ -67,45 +67,6 @@ public class MessageReceiverService {
                 log.error(e.getMessage());
             }
 
-            // testing
-            //List<Document> documentsList = elasticSearchService.getDocumentByTitle("simply");
-
-//            elasticSearchService.saveToElasticsearch(doc);
-//
-//            Document document1 = new Document();
-//            document1.setTitle("Title");
-//            document1.setContent("bla lorenz amelie ana");
-//            elasticSearchService.saveToElasticsearch(document1);
-//
-//            Document document2 = new Document();
-//            document2.setTitle("bla");
-//            document2.setContent("mi u ovom trenutku bla");
-//            elasticSearchService.saveToElasticsearch(document2);
-//
-//            Document document3 = new Document();
-//            document3.setTitle("dobra");
-//            document3.setContent("i ispravna politika");
-//            elasticSearchService.saveToElasticsearch(document3);
-
-//            List<Document> documentsList = elasticSearchService.search("simply");
-//            List<Document> documents2List = elasticSearchService.search("bla");
-//
-//
-//            for (Document doc : documentsList) {
-//                System.out.println(doc.getTitle());
-//                System.out.println(doc.getContent());
-//                log.info(String.valueOf(doc.getTitle()));
-//                log.info(String.valueOf(doc.getContent()));
-//            }
-//
-//            for (Document doc : documents2List) {
-//                System.out.println(doc.getTitle());
-//                System.out.println(doc.getContent());
-//                log.info(String.valueOf(doc.getTitle()));
-//                log.info(String.valueOf(doc.getContent()));
-//            }
-            // System.out.println("OCR Result: " + ocrResult);
-
         } catch (Exception e) {
             log.error("Error processing OCR message: " + e.getMessage(), e);
         }
