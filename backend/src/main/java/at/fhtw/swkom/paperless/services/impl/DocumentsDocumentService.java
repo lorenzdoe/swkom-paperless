@@ -22,6 +22,7 @@ import java.util.Objects;
 
 @Slf4j
 @Service
+
 public class DocumentsDocumentService {
     private final DocumentsDocumentRepository documentsDocumentRepository;
     private final MinIORepository minIORepository;
@@ -82,8 +83,11 @@ public class DocumentsDocumentService {
             }
             return savedDto;
 
-        } catch (Exception | CouldNotUploadFileException e) {
+        } catch (CouldNotUploadFileException e) {
             log.error("Error when trying to upload file to MinIO", e);
+            throw new UploadFileException("Could not store file. Please try again!");
+        } catch (Exception e) {
+            log.error("Error when trying to upload file", e);
             throw new UploadFileException("Could not store file. Please try again!");
         }
     }
