@@ -10,16 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class OCRServiceTest {
-    private OCRService ocrService;
 
-    public OCRServiceTest(@Autowired OCRService ocrService) {
-        this.ocrService = ocrService;
-    }
+    @Autowired
+    private OCRService ocrService;
 
     @Test
     public void testOCR() {
-        MockMultipartFile file = new MockMultipartFile("test.png", "test.png", "image/png", "Hello World".getBytes());
-        // String result = ocrService.performOcr("src/test/resources/test.png");
-        // assertEquals("Hello World", result);
+        // Arrange
+        String filePath = "src/test/java/at/fhtw/services/ocr/test.pdf";
+        MockMultipartFile file = new MockMultipartFile("test.pdf", filePath, "application/pdf", "test".getBytes());
+
     }
 }

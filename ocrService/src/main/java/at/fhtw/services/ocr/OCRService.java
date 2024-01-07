@@ -1,5 +1,7 @@
 package at.fhtw.services.ocr;
 
+import com.google.common.annotations.Beta;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
@@ -10,6 +12,7 @@ import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +24,8 @@ import java.io.IOException;
 @Slf4j
 @Service
 public class OCRService {
+
+    public OCRService() {}
 
     @Value("${tesseract.path}")
     private String TESSERACT_DATA_PATH;
