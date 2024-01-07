@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.config.comm;
 
 import at.fhtw.swkom.paperless.persistance.repositories.MinIO.MinIORepository;
+import at.fhtw.swkom.paperless.services.exceptions.BuildBucketFailException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ public class MinIOInitializer {
     }
 
     @PostConstruct
-    public void init() {
+    public void init() throws BuildBucketFailException {
         minIORepository.checkAndCreateBucket(bucketName);
     }
 }

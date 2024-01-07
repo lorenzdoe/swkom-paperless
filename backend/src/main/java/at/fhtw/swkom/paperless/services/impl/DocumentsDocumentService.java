@@ -5,6 +5,10 @@ import at.fhtw.swkom.paperless.persistance.entities.DocumentsDocument;
 import at.fhtw.swkom.paperless.persistance.mapper.DocumentsDocumentMapper;
 import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsDocumentRepository;
 import at.fhtw.swkom.paperless.persistance.repositories.MinIO.MinIORepository;
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotUploadFileException;
+import at.fhtw.swkom.paperless.services.exceptions.NoContentTypeSetException;
+import at.fhtw.swkom.paperless.services.exceptions.NoFileTitleException;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
+
 public class DocumentsDocumentService {
     private final DocumentsDocumentRepository documentsDocumentRepository;
     private final MinIORepository minIORepository;
@@ -67,17 +73,26 @@ public class DocumentsDocumentService {
                 log.info("File name: {}", file.getOriginalFilename());
                 log.info("File size: {}", file.getSize());
                 log.info("File type: {}", file.getContentType());
+                if(Objects.requireNonNull(file.getOriginalFilename()).isEmpty()){
+                    throw new NoFileTitleException("Error: the file has no Title.");
+                }
+                if(Objects.requireNonNull(file.getContentType()).isEmpty()){
+                    throw new NoContentTypeSetException("Error: there is no content type set for this file.");
+                }
                 minIORepository.saveInputStream(saved.getId().toString(), file.getInputStream(), file.getSize(), filetype);
             }
             return savedDto;
 
-        } catch (Exception e) {
+        } catch (CouldNotUploadFileException e) {
             log.error("Error when trying to upload file to MinIO", e);
+            throw new UploadFileException("Could not store file. Please try again!");
+        } catch (Exception e) {
+            log.error("Error when trying to upload file", e);
             throw new UploadFileException("Could not store file. Please try again!");
         }
     }
 
-    public void deleteDocumentById(Integer id) {
+    public void deleteDocumentById(Integer id) throws CouldNotDeleteFileException {
         documentsDocumentRepository.deleteById(Long.valueOf(id));
         minIORepository.deleteFile(id.toString());
     }

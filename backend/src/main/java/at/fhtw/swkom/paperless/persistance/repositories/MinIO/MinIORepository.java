@@ -1,5 +1,8 @@
 package at.fhtw.swkom.paperless.persistance.repositories.MinIO;
 
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotUploadFileException;
+import at.fhtw.swkom.paperless.services.exceptions.BuildBucketFailException;
 import io.minio.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +27,7 @@ public class MinIORepository {
         this.minioClient = minioClient;
     }
 
-    public void checkAndCreateBucket(String bucketName) {
+    public void checkAndCreateBucket(String bucketName) throws BuildBucketFailException {
         try {
             boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
             if (!found) {
@@ -36,10 +39,11 @@ public class MinIORepository {
             }
         } catch (Exception e) {
             log.error("Bucket does not exist and could not create bucket", e);
+            throw new BuildBucketFailException("Bucket could not be build." + e);
         }
     }
 
-    public void saveInputStream(String id, InputStream file, long size, String filetype) {
+    public void saveInputStream(String id, InputStream file, long size, String filetype) throws CouldNotUploadFileException {
         try {
             minioClient.putObject(
                     PutObjectArgs.builder()
@@ -51,7 +55,7 @@ public class MinIORepository {
             );
             log.info("Successfully uploaded '" + id + "' to bucket '" + bucketName + "'.");
         } catch (Exception e) {
-            log.error("Could not upload file to MinIO", e);
+            throw new CouldNotUploadFileException("MinIO could not upload file" + e);
         } finally {
             try {
                 file.close();
@@ -61,7 +65,7 @@ public class MinIORepository {
         }
     }
 
-    public void deleteFile(String string) {
+    public void deleteFile(String string) throws CouldNotDeleteFileException {
         try {
             RemoveObjectArgs removeObjectArgs = RemoveObjectArgs.builder()
                     .bucket(bucketName)
@@ -70,7 +74,7 @@ public class MinIORepository {
             minioClient.removeObject(removeObjectArgs);
             log.info("Successfully deleted '" + string + "' from bucket '" + bucketName + "'.");
         } catch (Exception e) {
-            log.error("Could not delete file from MinIO", e);
+            throw new CouldNotDeleteFileException("Could not delete file from MinIO" + e);
         }
     }
 }

@@ -1,6 +1,7 @@
 package at.fhtw.swkom.paperless.controller.documents;
 
 import at.fhtw.swkom.paperless.controller.ApiUtil;
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
 import at.fhtw.swkom.paperless.services.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -437,7 +438,7 @@ public interface Documents {
     )
     default ResponseEntity<Void> bulkEdit(
             @Parameter(name = "BulkEditRequest", description = "") @Valid @RequestBody(required = false) BulkEditRequest bulkEditRequest
-    ) {
+    ) throws CouldNotDeleteFileException {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.controller.documents;
 
 import at.fhtw.swkom.paperless.controller.ApiUtil;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
+import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
 import at.fhtw.swkom.paperless.services.comm.MessageService;
 import at.fhtw.swkom.paperless.services.dto.BulkEditRequest;
 import at.fhtw.swkom.paperless.services.dto.Document;
@@ -113,7 +114,7 @@ public class DocumentsController implements Documents {
     @Override
     public ResponseEntity<Void> bulkEdit(
             @Parameter(name = "BulkEditRequest", description = "") @Valid @RequestBody(required = false) BulkEditRequest bulkEditRequest
-    ) {
+    ) throws CouldNotDeleteFileException {
         log.info("bulkEdit Request: " + bulkEditRequest.toString());
         if(bulkEditRequest.getDocuments() != null && bulkEditRequest.getMethod().equals("delete")) {
             log.info("documents: " + bulkEditRequest.getDocuments().toString());
