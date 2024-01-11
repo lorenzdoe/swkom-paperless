@@ -7,15 +7,18 @@ import at.fhtw.swkom.paperless.persistance.repositories.DB.DocumentsDocumentRepo
 import at.fhtw.swkom.paperless.persistance.repositories.MinIO.MinIORepository;
 import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
 import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotUploadFileException;
+import at.fhtw.swkom.paperless.services.dto.Document;
 import at.fhtw.swkom.paperless.services.exceptions.NoContentTypeSetException;
 import at.fhtw.swkom.paperless.services.exceptions.NoFileTitleException;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import lombok.extern.slf4j.Slf4j;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -95,5 +98,26 @@ public class DocumentsDocumentService {
     public void deleteDocumentById(Integer id) throws CouldNotDeleteFileException {
         documentsDocumentRepository.deleteById(Long.valueOf(id));
         minIORepository.deleteFile(id.toString());
+    }
+
+    public DocumentsDocumentDto getDocumentById(Integer id) {
+        DocumentsDocument document = documentsDocumentRepository.findById(Long.valueOf(id)).orElse(null);
+        return documentsDocumentMapper.convert(document);
+    }
+
+    public List<Document> getAllDocuments() {
+        List<DocumentsDocument> documents = documentsDocumentRepository.findAll();
+        List<Document> documentList = new ArrayList<>();
+        for (DocumentsDocument document : documents) {
+            Document documentDto = new Document();
+            documentDto.setId(document.getId().intValue());
+            documentDto.setTitle(JsonNullable.of(document.getTitle()));
+            documentDto.setCreated(document.getAdded());
+            documentDto.setModified(document.getModified());
+            documentDto.setAdded(document.getAdded());
+            documentDto.setContent(JsonNullable.of(document.getContent()));
+            documentList.add(documentDto);
+        }
+        return documentList;
     }
 }

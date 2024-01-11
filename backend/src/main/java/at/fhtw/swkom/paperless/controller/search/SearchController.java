@@ -44,7 +44,7 @@ public class SearchController implements Search {
 
     @Override
     public ResponseEntity<List<String>> autoComplete(String term, Integer limit) {
-        List<Document> documents = elasticSearchService.getDocumentByTitle(term);
+        List<Document> documents = elasticSearchService.getDocumentByFieldName(term, "title");
 
         for (Document document : documents) {
             log.info("Search Controller Document Title: {}", document.getTitle());

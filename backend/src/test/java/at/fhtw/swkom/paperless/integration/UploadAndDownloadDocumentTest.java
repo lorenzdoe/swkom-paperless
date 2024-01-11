@@ -59,7 +59,7 @@ public class UploadAndDownloadDocumentTest {
             docDTO = null;
         }
         Assert.assertNotNull(docDTO);
-        List<Document> testDocList = elasticSearchService.getDocumentByTitle("truhnpaper.pdf");
+        List<Document> testDocList = elasticSearchService.getDocumentByFieldName("truhnpaper.pdf", "title");
         try {
             documentsDocumentService.deleteDocumentById(docDTO.getId());
         } catch (Exception e){

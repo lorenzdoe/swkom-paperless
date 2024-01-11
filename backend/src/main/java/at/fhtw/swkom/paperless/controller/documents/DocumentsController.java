@@ -4,9 +4,7 @@ import at.fhtw.swkom.paperless.controller.ApiUtil;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
 import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
 import at.fhtw.swkom.paperless.services.comm.MessageService;
-import at.fhtw.swkom.paperless.services.dto.BulkEditRequest;
-import at.fhtw.swkom.paperless.services.dto.Document;
-import at.fhtw.swkom.paperless.services.dto.GetDocuments200Response;
+import at.fhtw.swkom.paperless.services.dto.*;
 import at.fhtw.swkom.paperless.services.elasticsearch.ElasticSearchService;
 import at.fhtw.swkom.paperless.services.exceptions.UploadFileException;
 import at.fhtw.swkom.paperless.services.impl.DocumentsDocumentService;
@@ -30,6 +28,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,11 +50,26 @@ public class DocumentsController implements Documents {
 
     @Autowired
     ElasticSearchService elasticSearchService;
+
     @Autowired
     private MessageService messageService;
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.ofNullable(request);
+    }
+
+    @Override
+    public ResponseEntity<GetDocument200Response> getDocument(Integer id, Integer page, Boolean full_perms) {
+        log.info("getDocument Request: id=" + id);
+        DocumentsDocumentDto document = documentsDocumentService.getDocumentById(id);
+        GetDocument200Response response = new GetDocument200Response();
+        response.setId(document.getId());
+        response.setTitle(document.getTitle());
+        response.setCreated(String.valueOf(document.getAdded()));
+        response.setModified(String.valueOf(document.getModified()));
+        response.setAdded(String.valueOf(document.getAdded()));
+        response.setContent(document.getContent());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
@@ -88,27 +102,36 @@ public class DocumentsController implements Documents {
     }
 
     @Override
-    public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent) {
-
-        List<Document> documents = elasticSearchService.getDocumentByTitle(query);
-        boolean first = true;
-        String returnString = "{ \"next\" : 6, \"all\" : [ 5, 5 ], \"previous\" : 1, \"count\" : 0, \"results\" : [";
-        for (Document document : documents) {
-            if (!first) {
-                returnString += ",";
-            }
-            JsonNullable<String> title = document.getTitle();
-            String titleString = title.get();
-            JsonNullable<String> content = document.getContent();
-            String contentString = content.orElse("");
-            Integer id = document.getId();
-            returnString +="{ \"owner\" : 4, \"user_can_change\" : true, \"archive_serial_number\" : 2, \"notes\" : [ { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : " + id + ", \"user\" : 1 }, { \"note\" : \"note\", \"created\" : \"created\", \"document\" : 1, \"id\" : " + id + ", \"user\" : 1 } ], \"added\" : \"added\", \"created\" : \"created\", \"title\" : \"" + titleString + "\", \"content\" : \"content\", \"tags\" : [ 3, 3 ], \"storage_path\" : 9, \"archived_file_name\" : \"archived_file_name\", \"modified\" : \"modified\", \"correspondent\" : 2, \"original_file_name\" : \"original_file_name\", \"id\" : " + id + ", \"created_date\" : \"created_date\", \"document_type\" : 7 } ";
-            first = false;
+    public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent, String title__icontains) {
+        log.info("getDocuments Request: page=" + page + ", pageSize=" + pageSize + ", query=" + query + ", ordering=" + ordering + ", tagsIdAll=" + tagsIdAll + ", documentTypeId=" + documentTypeId + ", storagePathIdIn=" + storagePathIdIn + ", correspondentId=" + correspondentId + ", truncateContent=" + truncateContent + ", title__icontains=" + title__icontains);
+        List<Document> documents = new ArrayList<>();
+        page = page == null ? 1 : page;
+        if(title__icontains != null) {
+            documents = elasticSearchService.getDocumentByFieldName(title__icontains, "title");
         }
-        returnString += "] }";
-        ApiUtil.setExampleResponse(request, "application/json", returnString);
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        else if (query != null) {
+            documents = elasticSearchService.getDocumentByFieldName(query, "content");
+        }
+        else {
+            documents = documentsDocumentService.getAllDocuments();
+        }
+        GetDocuments200Response response = new GetDocuments200Response();
+        response.setCount(documents.size());
+        response.setNext(page + 1);
+        response.setPrevious(page - 1);
+        response.setAll(List.of(page, page));
+        List<GetDocuments200ResponseResultsInner> results = response.getResults();
+        for (Document document : documents) {
+            GetDocuments200ResponseResultsInner result = new GetDocuments200ResponseResultsInner();
+            result.setId(document.getId());
+            result.setTitle(document.getTitle().get());
+            result.setCreated(String.valueOf(document.getAdded()));
+            result.setModified(String.valueOf(document.getModified()));
+            result.setAdded(String.valueOf(document.getAdded()));
+            result.setContent(document.getContent().get());
+            results.add(result);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override

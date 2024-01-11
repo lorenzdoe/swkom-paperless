@@ -6,6 +6,7 @@ import at.fhtw.swkom.paperless.persistance.repositories.DocumentsRepository;
 import at.fhtw.swkom.paperless.services.dto.Document;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.Result;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch.core.DeleteResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
@@ -74,7 +75,7 @@ public class ElasticSearchService implements SearchIndexService{
         }
     }
 
-    public List<Document> getDocumentByTitle(String searchText) {
+    public List<Document> getDocumentByFieldName(String searchText, String fieldName) {
         try {
             if (searchText == null || searchText.isEmpty()) {
                 log.debug("No search text provided");
@@ -84,8 +85,9 @@ public class ElasticSearchService implements SearchIndexService{
                             .index("documents")
                             .query(q -> q
                                     .match(t -> t
-                                            .field("title")
+                                            .field(fieldName)
                                             .query(searchText)
+                                            .operator(Operator.And)
                                             .fuzziness(String.valueOf(10))
                                     )
                             ),
@@ -135,12 +137,4 @@ public class ElasticSearchService implements SearchIndexService{
         return result.result()==Result.Deleted;
     }
 
-//    public List<Document> search(String query) {
-//        return documentsRepository.findByTitleContaining(query);
-//    }
 }
-
-//    public void saveToElasticsearch(Document document) {
-//        log.info("savetoelasticsearch " + document.toString());
-//        documentsRepository.save(document);
-//    }

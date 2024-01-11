@@ -294,7 +294,8 @@ public interface Documents {
             @Parameter(name = "document_type__id", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "document_type__id", required = false) Integer documentTypeId,
             @Parameter(name = "storage_path__id__in", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "storage_path__id__in", required = false) Integer storagePathIdIn,
             @Parameter(name = "correspondent__id", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "correspondent__id", required = false) Integer correspondentId,
-            @Parameter(name = "truncate_content", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "truncate_content", required = false) Boolean truncateContent
+            @Parameter(name = "truncate_content", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "truncate_content", required = false) Boolean truncateContent,
+            @Parameter(name = "title__icontains", description = "", in = ParameterIn.QUERY) @Valid @RequestParam(value = "title__icontains", required = false) String title__icontains
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -364,9 +365,7 @@ public interface Documents {
     )
     @RequestMapping(
             method = RequestMethod.PUT,
-            value = "/api/documents/{id}/",
-            produces = { "application/json" },
-            consumes = { "application/json" }
+            value = "/api/documents/{id}/"
     )
     default ResponseEntity<UpdateDocument200Response> updateDocument(
             @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
