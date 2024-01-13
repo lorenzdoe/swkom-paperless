@@ -55,8 +55,8 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - 5672:5672     # just for development
-      - 15672:15672   # for browser access to the management ui
+      - 5672:5672          # just for development
+      - 15672:15672        # for browser access to the management ui
     environment:
       RABBITMQ_DEFAULT_USER: PAPERLESS
       RABBITMQ_DEFAULT_PASS: PASSWORD
@@ -87,13 +87,6 @@ services:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - xpack.security.enabled=false
-    #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - "xpack.security.enabled=false"
-#      - "xpack.security.enrollment.enabled=false"
-#     ulimits:
-#       memlock:
-#         soft: -1
-#         hard: -1
     ports:
       - 9200:9200
       - 9300:9300
@@ -104,4 +97,4 @@ services:
 
 # volumes:
   # miniostorage:
-  # TODO: add volumes for postgres, rabbitmq
+  # to persist data, add volumes for postgres, rabbitmq, elasticsearch
