@@ -120,4 +120,8 @@ public class DocumentsDocumentService {
         }
         return documentList;
     }
+
+    public DocumentsDocument updateDocument(DocumentsDocument document) {
+        return documentsDocumentRepository.save(document);
+    }
 }
