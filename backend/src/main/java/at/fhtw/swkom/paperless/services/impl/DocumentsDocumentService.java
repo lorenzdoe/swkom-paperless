@@ -125,4 +125,8 @@ public class DocumentsDocumentService {
     public Resource downloadFile(Integer id) {
         return minIORepository.getFile(id.toString());
     }
+
+    public DocumentsDocument updateDocument(DocumentsDocument document) {
+        return documentsDocumentRepository.save(document);
+    }
 }
