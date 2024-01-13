@@ -25,10 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -190,67 +187,5 @@ public class DocumentsController implements Documents {
         log.info("Updated document id: " + saved.getId() + " and title " + saved.getTitle());
 
         return new ResponseEntity<>(HttpStatus.OK);
-
-        // set id
-//        document.setId(id);
-//
-//        // set correspondent
-//        Integer correspondentValue = updateDocumentRequest.getCorrespondent();
-//        JsonNullable<Integer> jsonNullableCorrespondent = JsonNullable.of(correspondentValue);
-//        document.setCorrespondent(jsonNullableCorrespondent);
-//
-//        // set doctype
-//        Integer docTypeValue = updateDocumentRequest.getDocumentType();
-//        JsonNullable<Integer> jsonNullableDocType = JsonNullable.of(docTypeValue);
-//        document.setDocumentType(jsonNullableDocType);
-//
-//        // path
-//        Integer storagePathValue = updateDocumentRequest.getStoragePath();
-//        JsonNullable<Integer> jsonNullableStoragePath = JsonNullable.of(storagePathValue);
-//        document.setStoragePath(jsonNullableStoragePath);
-//
-//        // title
-//        String titleValue = updateDocumentRequest.getTitle();
-//        JsonNullable<String> jsonNullableTitleValue = JsonNullable.of(titleValue);
-//        document.setTitle(jsonNullableTitleValue);
-//
-//        // content
-//        String contentValue = updateDocumentRequest.getContent();
-//        JsonNullable<String> jsonNullableContentValue = JsonNullable.of(contentValue);
-//        document.setContent(jsonNullableContentValue);
-//
-//        // tags
-//        List<Integer> tagsValue = updateDocumentRequest.getTags();
-//        JsonNullable<List<Integer>> jsonNullableTagsValue = JsonNullable.of(tagsValue);
-//        document.setTags(jsonNullableTagsValue);
-//
-//        // created date
-//        OffsetDateTime createdDateValue = OffsetDateTime.parse(updateDocumentRequest.getCreatedDate());
-//        document.setCreated(createdDateValue);
-//
-//        //  modified
-//        OffsetDateTime modifiedValue = OffsetDateTime.parse(updateDocumentRequest.getModified());
-//        document.setCreated(modifiedValue);
-//
-//        //  added
-//        OffsetDateTime addedValue = OffsetDateTime.parse(updateDocumentRequest.getAdded());
-//        document.setCreated(modifiedValue);
-//
-//        // archive serial nr
-//        String archiveValue = String.valueOf(updateDocumentRequest.getArchiveSerialNumber());
-//        JsonNullable<String> jsonNullableArchiveValue = JsonNullable.of(archiveValue);
-//        document.setContent(jsonNullableArchiveValue);
-//
-//        // orig filename
-//        String filenameValue = updateDocumentRequest.getOriginalFileName();
-//        JsonNullable<String> jsonNullableFilenameValue = JsonNullable.of(filenameValue);
-//        document.setContent(jsonNullableFilenameValue);
-//
-//        // archiv filename
-//        String archiveFilenameValue = updateDocumentRequest.getArchivedFileName();
-//        JsonNullable<String> jsonNullableArchiveFilenameValue = JsonNullable.of(archiveFilenameValue);
-//        document.setContent(jsonNullableArchiveFilenameValue);
-//
-
     }
 }
