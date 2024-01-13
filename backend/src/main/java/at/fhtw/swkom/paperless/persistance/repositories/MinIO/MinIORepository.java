@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
 import java.io.InputStream;
@@ -75,6 +77,19 @@ public class MinIORepository {
             log.info("Successfully deleted '" + string + "' from bucket '" + bucketName + "'.");
         } catch (Exception e) {
             throw new CouldNotDeleteFileException("Could not delete file from MinIO" + e);
+        }
+    }
+
+    public Resource getFile(String string) {
+        try {
+            GetObjectArgs getObjectArgs = GetObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(string)
+                    .build();
+            return new ByteArrayResource(minioClient.getObject(getObjectArgs).readAllBytes());
+        } catch (Exception e) {
+            log.error("Could not get file from MinIO", e);
+            return null;
         }
     }
 }

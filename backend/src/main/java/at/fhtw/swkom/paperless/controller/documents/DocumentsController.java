@@ -2,6 +2,7 @@ package at.fhtw.swkom.paperless.controller.documents;
 
 import at.fhtw.swkom.paperless.controller.ApiUtil;
 import at.fhtw.swkom.paperless.persistance.dtos.DocumentsDocumentDto;
+import at.fhtw.swkom.paperless.persistance.repositories.MinIO.MinIORepository;
 import at.fhtw.swkom.paperless.persistance.repositories.exceptions.CouldNotDeleteFileException;
 import at.fhtw.swkom.paperless.services.comm.MessageService;
 import at.fhtw.swkom.paperless.services.dto.*;
@@ -17,6 +18,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -147,6 +149,14 @@ public class DocumentsController implements Documents {
             }
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // download a document
+    @Override
+    public ResponseEntity<Resource> downloadDocument(Integer id, Boolean original) {
+        // get pdf file from miniostorage
+        Resource file = documentsDocumentService.downloadFile(id);
+        return new ResponseEntity<>(file, HttpStatus.OK);
     }
 
 }
